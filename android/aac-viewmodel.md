@@ -98,6 +98,10 @@ public class MyActivity extends AppCompatActivity {
 
 
 
+它背后蕴藏什么原理呢？咱们接下来看看。
+
+
+
 ### 3. ViewModel 的生命周期
 
 
@@ -106,7 +110,13 @@ public class MyActivity extends AppCompatActivity {
 
 
 
+看一张官网给的图：
+
 ![viewmodel-lifecycle.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1553846610367-effa7d60-5934-4152-9940-888da1262773.png#align=left&display=inline&height=543&name=viewmodel-lifecycle.png&originHeight=543&originWidth=522&size=31523&status=done&width=522)
+
+
+
+可以看到 ViewModel 的生命周期起始于 `Activity.onCreate`，结束于 `Activity.onDestroy` 
 
 
 
@@ -114,7 +124,348 @@ public class MyActivity extends AppCompatActivity {
 
 
 
-### 5. 知识点梳理和汇总
+回顾下我们之前使用 ViewModel 的代码：
+
+```java
+MyViewModel model = ViewModelProviders.of(this).get(MyViewModel.class);
+```
+
+这里先从 `ViewModelProviders.of` 方法入手看看：
+
+```java
+//ViewModelProviders
+public static ViewModelProvider of(@NonNull FragmentActivity activity) {
+  //传入了 null
+  return of(activity, null);
+}
+
+@NonNull
+@MainThread
+public static ViewModelProvider of(@NonNull Fragment fragment, @Nullable Factory factory) {
+  //检查合法性
+  Application application = checkApplication(checkActivity(fragment));
+  if (factory == null) {
+    //走到这里，返回了 AndroidViewModelFactory 的单例
+    factory = ViewModelProvider.AndroidViewModelFactory.getInstance(application);
+  }
+  return new ViewModelProvider(ViewModelStores.of(fragment), factory);
+}
+```
+
+
+
+`ViewModelProviders.of()` 方法帮我们在默认情况下构建了一个 `AndroidViewModelFactory` 工厂类，来帮助创建 ViewModel，并且返回了一个在当前 Activity 生命周期内的 `ViewModelProvider`。
+
+
+
+看一下 `AndroidViewModelFactory `: 
+
+```java
+    public static class AndroidViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+				//单例模式
+        private static AndroidViewModelFactory sInstance;
+        @NonNull
+        public static AndroidViewModelFactory getInstance(@NonNull Application application) {
+            if (sInstance == null) {
+                sInstance = new AndroidViewModelFactory(application);
+            }
+            return sInstance;
+        }
+
+        private Application mApplication;
+        public AndroidViewModelFactory(@NonNull Application application) {
+            mApplication = application;
+        }
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            if (AndroidViewModel.class.isAssignableFrom(modelClass)) {
+                //noinspection TryWithIdenticalCatches
+                try {
+                    return modelClass.getConstructor(Application.class).newInstance(mApplication);
+                } catch (NoSuchMethodException e) {
+                  //...
+                }
+            }
+            return super.create(modelClass);
+        }
+    }
+```
+
+
+
+AndroidViewModelFactory 其实就是一个通过`反射`方法来构建 ViewModel 的工厂类，且是个单例。
+
+看下来发现我们 ViewModel 的 class 是传给了 `ViewModelProvider.get()` 方法。
+
+来看看 get 方法：
+
+```java
+//ViewModelProvider
+@NonNull
+@MainThread
+public <T extends ViewModel> T get(@NonNull Class<T> modelClass) {
+  String canonicalName = modelClass.getCanonicalName();
+  if (canonicalName == null) {
+    throw new IllegalArgumentException("Local and anonymous classes can not be ViewModels");
+  }
+  //每个类都有一个唯一的 key
+  return get(DEFAULT_KEY + ":" + canonicalName, modelClass);
+}
+
+@NonNull
+@MainThread
+public <T extends ViewModel> T get(@NonNull String key, @NonNull Class<T> modelClass) {
+  //先从 store 中获取
+  ViewModel viewModel = mViewModelStore.get(key);
+
+  if (modelClass.isInstance(viewModel)) {
+    //noinspection unchecked
+    return (T) viewModel;
+  } else {
+    //noinspection StatementWithEmptyBody
+    if (viewModel != null) {
+      // TODO: log a warning.
+    }
+  }
+
+  viewModel = mFactory.create(modelClass);
+  mViewModelStore.put(key, viewModel);
+  //noinspection unchecked
+  return (T) viewModel;
+}
+```
+
+
+
+解释下代码，发现它为每个 ViewModel 的 class 都构建了一个`唯一的 key` , 并通过这个 key 尝试去一个叫做 `ViewModelStore` 的类获取 ViewModel 的实例，如果为null ，那么会通过 Factory 去创建，并把新的实例存入到 ViewModelStore。
+
+
+
+主要的流程似乎就跟我们平时做缓存一样，好像没什么特别的东西，**没有看到一丝跟生命周期相关的处理的代码**，这是怎么回事？
+
+
+
+再仔细思考一下，get 方法会优先从这个 ViewModelStore 中去拿，那么理论上**只要保证 ViewModelStore 这个类在配置变化的过程中没有被销毁，那么就可以保证我们创建的 ViewModel 不会被销毁**，我们肯定漏掉了关于 ViewModelStore 的重要东西。
+
+
+
+回过去再仔细看一下，ViewModelProvider 的构建好像并不简单：
+
+```java
+new ViewModelProvider(ViewModelStores.of(fragment), factory);
+```
+
+
+
+这里传入了一个 通过 ViewModelStores 类创建的 ViewModelStore，并且传入了 fragment，一定有蹊跷。
+
+
+
+```java
+//ViewModelStores
+public static ViewModelStore of(@NonNull Fragment fragment) {
+  if (fragment instanceof ViewModelStoreOwner) {
+    return ((ViewModelStoreOwner) fragment).getViewModelStore();
+  }
+  return holderFragmentFor(fragment).getViewModelStore();
+}
+```
+
+
+
+这里又多出来了几个类 ViewModelStoreOwner、HolderFragment ，让我们来追查一下。
+
+
+
+```java
+public interface ViewModelStoreOwner {
+    @NonNull
+    ViewModelStore getViewModelStore();
+}
+```
+
+
+
+ViewModelStoreOwner 跟 LifecycleOwner 类似，只是个接口定义，重点来看看`holderFragmentFor(fragment)` 方法返回的 `HolderFragment`。
+
+```java
+//HolderFragment
+public static HolderFragment holderFragmentFor(Fragment fragment) {
+  return sHolderFragmentManager.holderFragmentFor(fragment);
+}
+```
+
+方法又走到了 HolderFragmentManager 类，怎么又多了个 HolderFragmentManager ，神烦啊。
+
+
+
+```java
+static class HolderFragmentManager {
+    private Map<Activity, HolderFragment> mNotCommittedActivityHolders = new HashMap<>();
+    private Map<Fragment, HolderFragment> mNotCommittedFragmentHolders = new HashMap<>();
+
+    private ActivityLifecycleCallbacks mActivityCallbacks =
+            new EmptyActivityLifecycleCallbacks() {
+                @Override
+                public void onActivityDestroyed(Activity activity) {
+                    HolderFragment fragment = mNotCommittedActivityHolders.remove(activity);
+                    if (fragment != null) {
+                        Log.e(LOG_TAG, "Failed to save a ViewModel for " + activity);
+                    }
+                }
+            };
+
+    private boolean mActivityCallbacksIsAdded = false;
+
+    private FragmentLifecycleCallbacks mParentDestroyedCallback =
+            new FragmentLifecycleCallbacks() {
+                @Override
+                public void onFragmentDestroyed(FragmentManager fm, Fragment parentFragment) {
+                    super.onFragmentDestroyed(fm, parentFragment);
+                    HolderFragment fragment = mNotCommittedFragmentHolders.remove(
+                            parentFragment);
+                    if (fragment != null) {
+                        Log.e(LOG_TAG, "Failed to save a ViewModel for " + parentFragment);
+                    }
+                }
+            };
+
+    void holderFragmentCreated(Fragment holderFragment) {
+        Fragment parentFragment = holderFragment.getParentFragment();
+        if (parentFragment != null) {
+            mNotCommittedFragmentHolders.remove(parentFragment);
+            parentFragment.getFragmentManager().unregisterFragmentLifecycleCallbacks(
+                    mParentDestroyedCallback);
+        } else {
+            mNotCommittedActivityHolders.remove(holderFragment.getActivity());
+        }
+    }
+
+    private static HolderFragment findHolderFragment(FragmentManager manager) {
+        if (manager.isDestroyed()) {
+            throw new IllegalStateException("Can't access ViewModels from onDestroy");
+        }
+
+        Fragment fragmentByTag = manager.findFragmentByTag(HOLDER_TAG);
+        if (fragmentByTag != null && !(fragmentByTag instanceof HolderFragment)) {
+            throw new IllegalStateException("Unexpected "
+                    + "fragment instance was returned by HOLDER_TAG");
+        }
+        return (HolderFragment) fragmentByTag;
+    }
+
+    private static HolderFragment createHolderFragment(FragmentManager fragmentManager) {
+        HolderFragment holder = new HolderFragment();
+        fragmentManager.beginTransaction().add(holder, HOLDER_TAG).commitAllowingStateLoss();
+        return holder;
+    }
+
+    HolderFragment holderFragmentFor(FragmentActivity activity) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        HolderFragment holder = findHolderFragment(fm);
+        if (holder != null) {
+            return holder;
+        }
+        holder = mNotCommittedActivityHolders.get(activity);
+        if (holder != null) {
+            return holder;
+        }
+
+        if (!mActivityCallbacksIsAdded) {
+            mActivityCallbacksIsAdded = true;
+            activity.getApplication().registerActivityLifecycleCallbacks(mActivityCallbacks);
+        }
+        holder = createHolderFragment(fm);
+        mNotCommittedActivityHolders.put(activity, holder);
+        return holder;
+    }
+
+    HolderFragment holderFragmentFor(Fragment parentFragment) {
+        FragmentManager fm = parentFragment.getChildFragmentManager();
+        HolderFragment holder = findHolderFragment(fm);
+        if (holder != null) {
+            return holder;
+        }
+        holder = mNotCommittedFragmentHolders.get(parentFragment);
+        if (holder != null) {
+            return holder;
+        }
+
+        parentFragment.getFragmentManager()
+                .registerFragmentLifecycleCallbacks(mParentDestroyedCallback, false);
+        holder = createHolderFragment(fm);
+        mNotCommittedFragmentHolders.put(parentFragment, holder);
+        return holder;
+    }
+}
+```
+
+
+
+`HolderFragment`  源码精简如下：
+
+```java
+public class HolderFragment extends Fragment implements ViewModelStoreOwner {
+    private static final String LOG_TAG = "ViewModelStores";
+
+    private static final HolderFragmentManager sHolderFragmentManager = new HolderFragmentManager();
+
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+    public static final String HOLDER_TAG =
+            "android.arch.lifecycle.state.StateProviderHolderFragment";
+
+    private ViewModelStore mViewModelStore = new ViewModelStore();
+		//看这里看这里看这里
+    public HolderFragment() {
+        setRetainInstance(true);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sHolderFragmentManager.holderFragmentCreated(this);
+    }
+		...
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mViewModelStore.clear();
+    }
+}
+```
+
+
+
+HolderFragment 内部持有了一个`ViewModelStore`，并且实现了我们之前提到的 ViewModelStoreOwner 接口，并且最为主要的是这段代码：
+
+```java
+public HolderFragment() {
+  setRetainInstance(true);
+}
+```
+
+
+
+`Fragment.setRetainInstance(true)`  方法可以实现的效果为，在 Activity 配置改变后依然保存。
+
+
+
+到这里 ViewModel 实现的原理就清晰了：**通过注入一个retainInstance 为 true 的 HolderFragment ，利用 Fragment 的特性来保证在 Activity 配置改变后依然能够存活一下，并且保证了 HolderFragment 内部的 ViewModelStore 的存活，最终保证了 ViewModelStore 内部储存的 ViewModel 缓存存活，从而实现了 ViewModel 的生命周期这个特点功能**。(又是 Fragment！)
+
+
+
+### 5. 图解 ViewModel
+
+
+
+
+
+### 6. 知识点梳理和汇总
 
 
 
