@@ -9,13 +9,19 @@
 > 源码基于 android.arch.lifecycle:livedata-core:1.1.1
 
 
+
 在之前我们深入研究了 Lifecycle 的实现原理，并在文末提到了LiveData 以及 ViewModel，这次我们来讲讲 LiveData。
 
+
+
 LiveData 是 Android Architecture Components 中的一员，先看下官方是如何介绍的：
+
+
 
 > [LiveData](https://developer.android.com/reference/android/arch/lifecycle/LiveData.html) is an observable data holder class. Unlike a regular observable, LiveData is lifecycle-aware, meaning it respects the lifecycle of other app components, such as activities, fragments, or services. This awareness ensures LiveData only updates app component observers that are in an active lifecycle state. [见 9.1]
 > 
 > This class is designed to hold individual data fields of [ViewModel](https://developer.android.com/reference/android/arch/lifecycle/ViewModel.html), but can also be used for sharing data between different modules in your application in a decoupled fashion. [见 9.2]
+
 
 
 简单讲 `LiveData 是一个能够感知生命周期、可观察的数据持有类` ，它被设计成 ViewModel 的一个成员变量；可以以一个 `更解耦` 的方式来**共享数据**。
@@ -420,7 +426,7 @@ Transformations.map(liveString, new Function<String, Integer>() {
 EventBus 基于观察者模式，LiveData 也是，所以 LiveData 可以被用来做成 LiveDataBus，有兴趣可以搜索。
 
 <a name="719fecf9"></a>
-### 5. 知识点汇总
+### 5. 知识点梳理和汇总
 
 1. LiveData 的实现基于观察者模式（reactive patterns）；
 1. LiveData 跟 LifecycleOwner 绑定，能感知生命周期变化，并且只会在 LifecycleOwner 处于 Active 状态（STARTED/RESUMED）下通知数据改变；如果数据改变发生在非 active 状态，数据会变化，但是不发送通知，等 owner 回到 active 的状态下，再发送通知；
@@ -434,6 +440,7 @@ EventBus 基于观察者模式，LiveData 也是，所以 LiveData 可以被用�
 1. LiveData 利用版本管理、绑定 Lifecycle 确保了**只会发送最新的数据给 active 状态下的 Observer**；
 
 <a name="aa5fbf5b"></a>
+
 ### 6. 总结
 
 **LiveData 基于观察者模式，并且可以感知生命周期，这使得我们使用 LiveData 既可以享受观察者模式带来的隔离数据与 UI 等强大的解耦能力，还可以享受感知生命周期带来的巨大便利。并且还无需担心内存泄露这个令人头疼的问题。**
@@ -443,6 +450,7 @@ EventBus 基于观察者模式，LiveData 也是，所以 LiveData 可以被用�
 显而易见 LiveData 本身的优秀特性有着巨大的价值，利用好绝对是架构设计中的一大利器，另外 LiveData 配合 ViewModel 可以发挥更大的价值，机智的你一定已经知道下一篇文章讲什么了。
 
 <a name="b5b4ac7f"></a>
+
 ### 7. 参考与推荐
 
 1. LiveData Overview : [https://developer.android.com/topic/libraries/architecture/livedata](https://developer.android.com/topic/libraries/architecture/livedata)

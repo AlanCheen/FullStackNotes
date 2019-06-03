@@ -1,10 +1,9 @@
 # 【AAC 系列二】深入理解架构组件的基石：Lifecycle
 
-
-![kelly-sikkema-526104-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1552988340969-2064c85f-edb2-438f-b768-34bc676ebd67.jpeg#align=left&display=inline&height=497&name=kelly-sikkema-526104-unsplash.jpg&originHeight=853&originWidth=1280&size=279827&status=done&width=746)<br />Photo by Kelly Sikkema on Unsplash
-
+![kelly-sikkema-526104-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1552988340969-2064c85f-edb2-438f-b768-34bc676ebd67.jpeg#align=left&display=inline&height=497&name=kelly-sikkema-526104-unsplash.jpg&originHeight=853&originWidth=1280&size=279827&status=done&width=746)
 
 <a name="9cf27a82"></a>
+
 ### 0. 前言
 
 在前文，我就提到 Android Architecture Components （后简称为 AAC），是一个帮助开发者设计 `健壮` 、 `可测试` 且 `可维护` 的一系列库的集合。
@@ -599,7 +598,7 @@ Lifecycle 的应用场景非常广泛，我们可以利用 Lifecycle 的机制�
 具体实现可以参考我的开源库 Flap：[https://github.com/AlanCheen/Flap](https://github.com/AlanCheen/Flap) 。
 
 <a name="12eaa1dd"></a>
-### 6. 知识点梳理汇总
+### 6. 知识点梳理和汇总
 
 1. `**Lifecycle**`  库通过在 `SupportActivity`  的 `onCreate`  中注入 `ReportFragment`  来感知发生命周期；
 1. `**Lifecycle**`  抽象类，是 `Lifecycle`  库的核心类之一，它是对生命周期的抽象，定义了生命周期事件以及状态，通过它我们可以获取当前的生命周期状态，同时它也奠定了观察者模式的基调；（我是党员你看出来了吗:-D）
