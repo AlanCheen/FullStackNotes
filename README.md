@@ -22,6 +22,13 @@
   - [【AAC 系列一】Android 应用架构新时代来临！](./android/aac.md)
   - [【AAC 系列二】深入理解架构组件的基石：Lifecycle](./android/aac-lifecycle.md)
   - [【AAC 系列三】深入理解架构组件：LiveData](./android/aac-livedata.md)
+- 第三方库系列
+  - [Retroift](./android/retrofit.md)
+  - [[源码分析]Lottie 实现炫酷动画背后的原理](./android/lottie.md)
+
+
+
+### Java
 
 
 
@@ -33,7 +40,13 @@
 
 
 
-...
+### 阿里相关
+
+- [我想加入阿里，我该怎么做](./others/alibaba-1.md)
+
+- [进阿里看不看学历](./others/alibaba-2.md)
+
+
 
 ### Git
 
