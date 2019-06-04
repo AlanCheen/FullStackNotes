@@ -514,7 +514,7 @@ ViewModel原理实现序列图：
 
 
 
-### 6. 总结
+### 7. 总结
 
 
 
@@ -528,7 +528,7 @@ ViewModel 利用 Fragment 的特性，提供给我们一个方式在特定的生
 
 深入了解完 Lifecycle、LiveData、ViewModel 之后，强烈推荐大家赶紧上车体验。
 
-### 7. 参考与推荐
+### 8. 参考与推荐
 
 0. https://developer.android.com/topic/libraries/architecture/viewmodel#java
 
