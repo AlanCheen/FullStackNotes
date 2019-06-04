@@ -501,6 +501,12 @@ ViewModel原理实现序列图：
 
 
 
+**ViewModel 原理总结**：
+
+通过注入一个 `retainInstance` 为` true` 的 HolderFragment ，利用 Fragment 的特性来保证在 Activity 配置改变后依然能够存活下来，并且保证了 HolderFragment 内部的 ViewModelStore 的存活，最终保证了 ViewModelStore 内部储存的 ViewModel 缓存存活，从而实现 ViewModel 在 Activity 配置改变的情况下不销毁的功能。
+
+
+
 **ViewModel 的使用注意事项**：
 
 1. `不要持有 Activity` ：ViewModel 不会因为 Activity 配置改变而被销毁，所以绝对不要持有那些跟 Activity 相关的类，比如Activity 里的某个 View，让 ViewModel 持有 Activity 会导致内存泄露，还要注意的是连 Lifecycle 也不行；
@@ -512,17 +518,15 @@ ViewModel原理实现序列图：
 
 
 
-ViewModel 提供给我们一个方式在特定的生命周期内去管理跟 UI 相关的数据。
-
-ViewModel 能够帮助我们把数据管理的逻辑从 Activity/Fragment 中剥离开。
+ViewModel 利用 Fragment 的特性，提供给我们一个方式在特定的生命周期内去管理跟 UI 相关的数据；能够帮助我们把数据管理的逻辑从 Activity/Fragment 中剥离开。
 
 
 
-实际上 ViewModel 不仅可以管理数据，而且还可以存放业务逻辑处理的代码，另外还能够方便 Activity 中的 不同Fragment 之间的通信，这个解决了以往我们 Fragment 之间通信的一个大问题。
+实际上 ViewModel 不仅可以管理数据，而且还可以存放业务逻辑处理的代码，另外还能够方便 Activity 中的不同Fragment 之间互相通信，这个解决了以往我们 Fragment 之间通信的一个大问题。
 
 
 
-
+深入了解完 Lifecycle、LiveData、ViewModel 之后，强烈推荐大家赶紧上车体验。
 
 ### 7. 参考与推荐
 
