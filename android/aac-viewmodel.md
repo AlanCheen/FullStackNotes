@@ -53,6 +53,13 @@ ViewModel 的使用也非常简单，Android 提供了一个 ViewModel 类让我
 
 搬运一个官网例子如下：
 
+**0）**：先添加一下依赖：
+
+```groovy
+def lifecycle_version = "1.1.1"
+implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+```
+
 
 
 **1）**：自定义一个`MyViewModel` 继承自`ViewModel`，并且包含了一个 LiveData：
