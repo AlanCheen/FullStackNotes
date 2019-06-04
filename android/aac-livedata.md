@@ -6,7 +6,8 @@
 ### 0. 前言
 
 > 本文是深入理解「Android Architecture Components」系列文章第三篇
-> 源码基于 android.arch.lifecycle:livedata-core:1.1.1
+>
+> 源码基于 android.arch.lifecycle:livedata-core:1.1.1 
 
 
 

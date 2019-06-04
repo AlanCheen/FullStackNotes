@@ -8,7 +8,7 @@
 
 
 
-> 本文是深入理解「Android Architecture Components」系列文章第四篇，ViewModel
+> 本文是深入理解「Android Architecture Components」系列文章第四篇
 > 源码基于 AAC 1.1.1 版本
 
 
@@ -55,7 +55,7 @@ ViewModel 的使用也非常简单，Android 提供了一个 ViewModel 类让我
 
 
 
-**1）**自定义一个`MyViewModel` 继承自`ViewModel`，并且包含了一个 LiveData：
+**1）**：自定义一个`MyViewModel` 继承自`ViewModel`，并且包含了一个 LiveData：
 
 ```java
 public class MyViewModel extends ViewModel {
@@ -76,7 +76,7 @@ public class MyViewModel extends ViewModel {
 
 
 
-**2）**在 Activity 中借助 `ViewModelProviders` 获得 ViewModel 的实例，并借助 LiveData 订阅 users 的变化通知：
+**2）**：在 Activity 中借助 `ViewModelProviders` 获得 ViewModel 的实例，并借助 LiveData 订阅 users 的变化通知：
 
 ```java
 public class MyActivity extends AppCompatActivity {

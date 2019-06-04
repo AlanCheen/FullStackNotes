@@ -5,7 +5,7 @@
 <a name="5wLAg"></a>
 ### 0. 前言
 
-> 本文是深入理解 Android Archicture Components(AAC) 系列文章的开篇。
+> 本文是深入理解「Android Architecture Components」系列文章的开篇。
 
 
 在 2017 年，Android 推出了 Android Jetpack，它是新一代组件、工具和架构指导，旨在加快 Android 应用开发速度。

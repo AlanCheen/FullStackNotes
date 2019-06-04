@@ -6,6 +6,11 @@
 
 ### 0. 前言
 
+> 本文是深入理解「Android Architecture Components」系列文章第二篇
+> 源码基于 1.1.1 版本
+
+
+
 在前文，我就提到 Android Architecture Components （后简称为 AAC），是一个帮助开发者设计 `健壮` 、 `可测试` 且 `可维护` 的一系列库的集合。
 
 `Lifecycle`  就是 AAC 中的一员，**它能够帮助我们方便的管理 Activity 以及 Fragment 的生命周期**。
