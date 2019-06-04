@@ -404,6 +404,18 @@ static class HolderFragmentManager {
 
 
 
+从源码中我们可以获知 `HolderFragmentManager` 主要做这几件事：
+
+1. 在我们想要获取 ViewModel 实例的时候，会先构建一个 `HolderFragment`，将它`添加我们的宿主（Activity/Fragment）中`，并将它缓存起来；
+
+2. 同时通过注册回调来监听宿主的生命周期，Activity 对应 `ActivityLifecycleCallbacks` ，Fragment 对应 `FragmentLifecycleCallbacks` ，在宿主销毁的时候清理缓存；
+
+
+
+类如其名，`HolderFragmentManager`负责管理 HolderFragment，看到它注入了 HolderFragment，接下去看看 HolderFragment。
+
+
+
 `HolderFragment`  源码精简如下：
 
 ```java
@@ -441,7 +453,7 @@ public class HolderFragment extends Fragment implements ViewModelStoreOwner {
 
 
 
-HolderFragment 内部持有了一个`ViewModelStore`，并且实现了我们之前提到的 ViewModelStoreOwner 接口，并且最为主要的是这段代码：
+HolderFragment 内部持有了一个`ViewModelStore`，并且实现了我们之前提到的 `ViewModelStoreOwner` 接口，并且最为主要的是这段代码：
 
 ```java
 public HolderFragment() {
@@ -463,7 +475,14 @@ public HolderFragment() {
 
 
 
+ViewModel 重点类类图：
 
+![ViewModel.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610522523-d6d13063-c7a2-4b00-a3bd-de50765ed8f6.jpeg#align=left&display=inline&height=1196&name=ViewModel.jpg&originHeight=1196&originWidth=1798&size=212784&status=done&width=1798)
+
+
+ViewModel原理实现序列图：
+
+![ViewModel，公众号程序亦非猿.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610501807-ff84cb4a-a848-447d-8704-d2a3109564a2.jpeg#align=left&display=inline&height=1642&name=ViewModel%EF%BC%8C%E5%85%AC%E4%BC%97%E5%8F%B7%E7%A8%8B%E5%BA%8F%E4%BA%A6%E9%9D%9E%E7%8C%BF.jpg&originHeight=1642&originWidth=2996&size=332586&status=done&width=2996)
 
 ### 6. 知识点梳理和汇总
 
@@ -474,9 +493,9 @@ public HolderFragment() {
 - `ViewModel` ，抽象类，用来负责准备和管理 Activity/Fragment 的数据，并且还能处理 Activity/Fragment 跟外界的通信，通常还存放业务逻辑，类似 Presenter；ViewModel 通常会暴露 LiveData 给 Activity/Fragment；并且 Activity 配置改变并不会导致 ViewModel 回收；
 - `AndroidViewModel`，一个会持有 `Application`  的 ViewModel；
 - `ViewModelStore` ，负责存储 ViewModel 的类，并且还负责在 ViewModel 被清除之前通知它，也即调用 ` ViewModel.onCleared()`;
-- `ViewModelStoreOwner`  , ViewModelStore 的拥有者，类似 LifecycleOwner 的角色；
-- `HolderFragment`，
-- `HolderFragmentManager` ，
+- `ViewModelStoreOwner`  , 是抽象 “ViewModelStore 的拥有者” 的接口定义，类似 LifecycleOwner 的角色，实现了它的有 HolderFragment、FragmentActivity；
+- `HolderFragment`，一个 `retainInstance`属性为`true` 并实现了 `ViewModelStoreOwner` 的 Fragment，用来保存 `ViewModelStore`，并保证它在配置修改时不被销毁；
+- `HolderFragmentManager` ，负责创建、注入、缓存等管理 HolderFragment 的工作；
 
 
 
