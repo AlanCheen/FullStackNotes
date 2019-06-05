@@ -16,15 +16,16 @@
 
 #### 深入源码分析系列
 
-- [Handler 原理分析](./android/handler.md)
+- [【源码分析】Handler 原理分析](./android/handler.md)
 
 - 深入理解 Jetpack 系列
   - [【AAC 系列一】Android 应用架构新时代来临！](./android/aac.md)
   - [【AAC 系列二】深入理解架构组件的基石：Lifecycle](./android/aac-lifecycle.md)
   - [【AAC 系列三】深入理解架构组件：LiveData](./android/aac-livedata.md)
+  - [【AAC 系列四】深入理解架构组件：ViewModel](./android/aac-viewmodel.md)
 - 第三方库系列
-  - [Retroift](./android/retrofit.md)
-  - [[源码分析]Lottie 实现炫酷动画背后的原理](./android/lottie.md)
+  - [【源码分析】Retroift](./android/retrofit.md)
+  - [【源码分析】Lottie 实现炫酷动画背后的原理](./android/lottie.md)
 
 
 
