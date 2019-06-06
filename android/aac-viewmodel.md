@@ -1,8 +1,10 @@
 # 【AAC 系列四】深入理解架构组件：ViewModel
 
-![benjamin-suter-1589900-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559119915861-ab7f285f-c15b-49be-83b0-ad5a5e8fa3e6.jpeg#align=left&display=inline&height=427&name=benjamin-suter-1589900-unsplash.jpg&originHeight=853&originWidth=1280&size=314304&status=done&width=640)
+![benjamin-suter-1589900-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559119915861-ab7f285f-c15b-49be-83b0-ad5a5e8fa3e6.jpeg)
 
 <a name="2a1d9fae"></a>
+
+[TOC]
 
 ### 0. 前言
 
@@ -125,7 +127,7 @@ public class MyActivity extends AppCompatActivity {
 
 
 
-可以看到 ViewModel 的生命周期起始于 `Activity.onCreate`，结束于 `Activity.onDestroy` 
+可以看到 ViewModel 的生命周期起始于 `Activity.onCreate`，结束于 `Activity.onDestroy` (finish 触发)
 
 
 

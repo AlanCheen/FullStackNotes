@@ -2,6 +2,7 @@
 
 ![mat-reding-1525395-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1555938410737-fe6c0155-e2c9-4a5a-93bf-7b260d05e800.jpeg#align=left&display=inline&height=1119&name=mat-reding-1525395-unsplash.jpg&originHeight=4890&originWidth=3260&size=559591&status=done&width=746)
 <a name="2a1d9fae"></a>
+
 ## 0. 前言
 
 自我在内网发布了一篇关于 Lottie 的原理分析的文章之后，就不断有同事来找我询问关于 Lottie 的各种东西，最近又有同事来问，就想着可能对大家也会有所帮助，就稍作处理后分享出来。

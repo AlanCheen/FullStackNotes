@@ -3,6 +3,9 @@
 ![mj-tangonan-1540675-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1557131045935-3b37e4fb-658b-4d27-956b-eff115f51352.jpeg#align=left&display=inline&height=853&name=mj-tangonan-1540675-unsplash.jpg&originHeight=853&originWidth=1280&size=397107&status=done&width=1280)
 
 <a name="9cf27a82"></a>
+
+[TOC]
+
 ### 0. 前言
 
 > 本文是深入理解「Android Architecture Components」系列文章第三篇
@@ -65,7 +68,6 @@ liveString.postValue("程序亦非猿");
 接下来，上干货！
 
 <a name="5f1eee0e"></a>
-
 ### 2. LiveData 的原理分析
 
 在分析原理前，再明确一下我们的疑问：
@@ -428,7 +430,6 @@ Transformations.map(liveString, new Function<String, Integer>() {
 EventBus 基于观察者模式，LiveData 也是，所以 LiveData 可以被用来做成 LiveDataBus，有兴趣可以搜索。
 
 <a name="719fecf9"></a>
-
 ### 5. 知识点梳理和汇总
 
 1. LiveData 的实现基于观察者模式（reactive patterns）；

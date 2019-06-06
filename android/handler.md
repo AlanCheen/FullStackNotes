@@ -3,6 +3,9 @@
 ![](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1550556294610-9fb2a826-1ad8-4137-9560-64a419b96110.jpeg#align=left&display=inline&height=473&originHeight=811&originWidth=1280&size=0&status=done&width=746)
 
 <a name="2a1d9fae"></a>
+
+[TOC]
+
 ## 0. 前言
 
 做 Android 开发肯定离不开跟 Handler 打交道，它通常被我们用来做主线程与子线程之间的通信工具，而 Handler 作为 Android 中消息机制的重要一员也确实给我们的开发带来了极大的便利。
