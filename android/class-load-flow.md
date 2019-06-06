@@ -77,6 +77,73 @@ DexPathList(ClassLoader definingContext, String dexPath,
 
 
 
+```java
+//DexPathList
+
+/**
+* Makes an array of dex/resource path elements, one per element of
+* the given array.
+*/
+private static Element[] makeDexElements(List<File> files, File optimizedDirectory,
+        List<IOException> suppressedExceptions, ClassLoader loader, boolean isTrusted) {
+  Element[] elements = new Element[files.size()];
+  int elementsPos = 0;
+  /*
+   * Open all files and load the (direct or contained) dex files up front.
+   */
+  for (File file : files) {
+      if (file.isDirectory()) {
+          // We support directories for looking up resources. Looking up resources in
+          // directories is useful for running libcore tests.
+          elements[elementsPos++] = new Element(file);
+      } else if (file.isFile()) {
+          String name = file.getName();
+          DexFile dex = null;
+          if (name.endsWith(DEX_SUFFIX)) {
+              // Raw dex file (not inside a zip/jar).
+              try {
+                  //读取 dex
+                  dex = loadDexFile(file, optimizedDirectory, loader, elements);
+                  if (dex != null) {
+                      elements[elementsPos++] = new Element(dex, null);
+                  }
+              } catch (IOException suppressed) {
+                  System.logE("Unable to load dex file: " + file, suppressed);
+                  suppressedExceptions.add(suppressed);
+              }
+          } else {
+              try {
+                  dex = loadDexFile(file, optimizedDirectory, loader, elements);
+              } catch (IOException suppressed) {
+                  suppressedExceptions.add(suppressed);
+              }
+              if (dex == null) {
+                  elements[elementsPos++] = new Element(file);
+              } else {
+                  elements[elementsPos++] = new Element(dex, file);
+              }
+          }
+          if (dex != null && isTrusted) {
+            //信任
+            dex.setTrusted();
+          }
+      } else {
+          System.logW("ClassLoader referenced unknown path: " + file);
+      }
+  }
+  if (elementsPos != elements.length) {
+      elements = Arrays.copyOf(elements, elementsPos);
+  }
+  return elements;
+}
+```
+
+
+
+`makeDexElement()` 方法会去读取文件 `loadDexFile()`，并把每一个文件转成一个 Element。
+
+
+
 ### findClass(String name, List<Throwable> suppressed) 
 
 
@@ -263,8 +330,6 @@ private static native Class defineClassNative(String name, ClassLoader loader, O
 
 ### 总结
 
-
-
 总体流程：
 
 ```java
@@ -291,7 +356,7 @@ ClassLoader.loadClass
 
 
 
-一层一层传递，最后是 DexFile 来调用 `defineClassNative`来完成类的加载。
+系统会先把`.dex`文件都加载进来，变成一个 Element，然后在加载类的时候，一层一层传递，最后是 DexFile 来调用 `defineClassNative`来完成类的加载。
 
 
 
