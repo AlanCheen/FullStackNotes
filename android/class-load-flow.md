@@ -144,6 +144,32 @@ private static Element[] makeDexElements(List<File> files, File optimizedDirecto
 
 
 
+loadDexFile
+
+```java
+/**
+ * Constructs a {@code DexFile} instance, as appropriate depending on whether
+ * {@code optimizedDirectory} is {@code null}. An application image file may be associated with
+ * the {@code loader} if it is not null.
+ */
+private static DexFile loadDexFile(File file, File optimizedDirectory, ClassLoader loader,
+                                   Element[] elements)
+        throws IOException {
+    if (optimizedDirectory == null) {
+        return new DexFile(file, loader, elements);
+    } else {
+        String optimizedPath = optimizedPathFor(file, optimizedDirectory);
+        return DexFile.loadDex(file.getPath(), optimizedPath, 0, loader, elements);
+    }
+}
+```
+
+
+
+
+
+
+
 ### findClass(String name, List<Throwable> suppressed) 
 
 

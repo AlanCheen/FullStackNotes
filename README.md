@@ -1,5 +1,9 @@
 # Full Stack Notes
 
+
+
+> To Be A Full  Stack Engineer. 
+
 > 程序亦非猿，阿里资深工程师；
 >
 > 在这里记录一些全栈之路的成长，所见所得，所思所想。
