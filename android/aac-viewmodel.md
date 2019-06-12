@@ -37,7 +37,7 @@ ViewModel 被设计来管理跟 UI 相关的数据， 并且能够感知生命�
 
 
 
-我们知道类似旋转屏幕等配置项改变会导致我们的 Activity 被销毁并重建，此时 Activity 持有的数据就会随着丢失，而` ViewModel 则并不会被销毁`，从而能够帮助我们在这个过程中保存数据，而不是在 Activity 重建后重新去获取。并且 ViewModel 能够让我们`不必去担心潜在的内存泄露问题`，同时 ViewModel 相比于用`onSaveInstanceState()` 方法更有优势，比如存储相对大的数据，并且不需要序列化以及反序列化。
+我们知道类似旋转屏幕等配置项改变会导致我们的 Activity 被销毁并重建，此时 Activity 持有的数据就会跟随着丢失，而` ViewModel 则并不会被销毁`，从而能够帮助我们在这个过程中保存数据，而不是在 Activity 重建后重新去获取。并且 ViewModel 能够让我们`不必去担心潜在的内存泄露问题`，同时 ViewModel 相比于用`onSaveInstanceState()` 方法更有优势，比如存储相对大的数据，并且不需要序列化以及反序列化。
 
 
 
@@ -55,7 +55,7 @@ ViewModel 的使用也非常简单，Android 提供了一个 ViewModel 类让我
 
 搬运一个官网例子如下：
 
-**0）**：先添加一下依赖：
+**a）**：先添加一下依赖：
 
 ```groovy
 def lifecycle_version = "1.1.1"
@@ -64,7 +64,7 @@ implementation "android.arch.lifecycle:extensions:$lifecycle_version"
 
 
 
-**1）**：自定义一个`MyViewModel` 继承自`ViewModel`，并且包含了一个 LiveData：
+**b）**：自定义一个`MyViewModel` 继承自`ViewModel`，并且包含了一个 `LiveData`：
 
 ```java
 public class MyViewModel extends ViewModel {
@@ -85,7 +85,7 @@ public class MyViewModel extends ViewModel {
 
 
 
-**2）**：在 Activity 中借助 `ViewModelProviders` 获得 ViewModel 的实例，并借助 LiveData 订阅 users 的变化通知：
+**c）**：在 Activity 中借助 `ViewModelProviders` 获得 ViewModel 的实例，并借助 LiveData 订阅 users 的变化通知：
 
 ```java
 public class MyActivity extends AppCompatActivity {
@@ -123,13 +123,13 @@ public class MyActivity extends AppCompatActivity {
 
 看一张官网给的图：
 
-![viewmodel-lifecycle.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1553846610367-effa7d60-5934-4152-9940-888da1262773.png#align=left&display=inline&height=543&name=viewmodel-lifecycle.png&originHeight=543&originWidth=522&size=31523&status=done&width=522)
+<img width="522" height="543" src="https://cdn.nlark.com/yuque/0/2019/png/138547/1553846610367-effa7d60-5934-4152-9940-888da1262773.png">
 
 
 
-可以看到 ViewModel 的生命周期起始于 `Activity.onCreate`，结束于 `Activity.onDestroy` (finish 触发)
+可以看到 ViewModel 在 Activity 的重建时依然存活。
 
-
+`Why`？
 
 ### 4. ViewModel 的实现原理
 
@@ -488,12 +488,15 @@ public HolderFragment() {
 
 ViewModel 重点类类图：
 
-![ViewModel.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610522523-d6d13063-c7a2-4b00-a3bd-de50765ed8f6.jpeg#align=left&display=inline&height=1196&name=ViewModel.jpg&originHeight=1196&originWidth=1798&size=212784&status=done&width=1798)
 
+
+<img width="899" height="598" src="https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610522523-d6d13063-c7a2-4b00-a3bd-de50765ed8f6.jpeg">
 
 ViewModel原理实现序列图：
 
-![ViewModel，公众号程序亦非猿.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610501807-ff84cb4a-a848-447d-8704-d2a3109564a2.jpeg#align=left&display=inline&height=1642&name=ViewModel%EF%BC%8C%E5%85%AC%E4%BC%97%E5%8F%B7%E7%A8%8B%E5%BA%8F%E4%BA%A6%E9%9D%9E%E7%8C%BF.jpg&originHeight=1642&originWidth=2996&size=332586&status=done&width=2996)
+
+
+<img width="1498" height="821" src="https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610501807-ff84cb4a-a848-447d-8704-d2a3109564a2.jpeg">
 
 ### 6. 知识点梳理和汇总
 
@@ -535,7 +538,7 @@ ViewModel 利用 Fragment 的特性，提供给我们一个方式在特定的生
 
 
 
-深入了解完 Lifecycle、LiveData、ViewModel 之后，强烈推荐大家赶紧上车体验。
+深入了解完 Lifecycle、LiveData、ViewModel 之后，可以发现它们确实非常强大，能够切实的帮助我们解决实际开发过程中遇到的问题，强烈推荐大家赶紧上车体验，再晚就买不到票了。
 
 ### 8. 参考与推荐
 
