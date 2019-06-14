@@ -2,7 +2,7 @@
 
 > 源码基于 Android 9.0
 
-[TOC]
+### 
 
 ### 概述
 
@@ -275,7 +275,7 @@ public class BaseDexClassLoader extends ClassLoader {
 
 
 
-#### Android 的 ClassLoader 和 JVM 的不同点
+### Android 的 ClassLoader 和 JVM 的不同点
 
 不支持 defineClass 
 
@@ -306,3 +306,5 @@ https://juejin.im/post/5a28e7e86fb9a045117105c3
 http://androidxref.com/9.0.0_r3/xref/libcore/dalvik/src/main/java/dalvik/system/DexPathList.java
 
 http://androidxref.com/9.0.0_r3/xref/libcore/dalvik/src/main/java/dalvik/system/DexFile.java#defineClassNative
+
+http://gityuan.com/2017/03/19/android-classloader/
