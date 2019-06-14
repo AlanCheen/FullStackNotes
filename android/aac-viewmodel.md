@@ -496,7 +496,7 @@ ViewModel原理实现序列图：
 
 
 
-<img width="1498" height="821" src="https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610501807-ff84cb4a-a848-447d-8704-d2a3109564a2.jpeg">
+<img width="2996" height="1642" src="https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559610501807-ff84cb4a-a848-447d-8704-d2a3109564a2.jpeg">
 
 ### 6. 知识点梳理和汇总
 
@@ -538,7 +538,11 @@ ViewModel 利用 Fragment 的特性，提供给我们一个方式在特定的生
 
 
 
-深入了解完 Lifecycle、LiveData、ViewModel 之后，可以发现它们确实非常强大，能够切实的帮助我们解决实际开发过程中遇到的问题，强烈推荐大家赶紧上车体验，再晚就买不到票了。
+深入了解完 Lifecycle、LiveData、ViewModel 之后，可以发现它们确实非常强大，能够切实的帮助我们解决实际开发过程中遇到的问题。
+
+
+
+强烈推荐大家赶紧上车体验，再晚就买不到票了啊。
 
 ### 8. 参考与推荐
 
