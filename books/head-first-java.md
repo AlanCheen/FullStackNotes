@@ -2,6 +2,8 @@
 
 [TOC]
 
+> 本文 GitHub 地址：
+
 ### 1 基本概念
 
 ​	源代码
@@ -309,4 +311,51 @@ Manifest-Version: 1.0
 Created-By: 1.8.0_121 (Oracle Corporation)
 Main-Class: com.fyf.Greeting
 ```
+
+
+
+### 18 远程部署的 RMI
+
+
+
+`RMI`：远程调用程序，Remote Method Invocation。
+
+
+
+一般来说对象方法的调用都是在相同的 JVM 上进行的，不同的JVM 不能互相获取对方堆上的对象，这使得不能直接互相使用。
+
+
+
+#### 如何调用不同机器上的对象的方法呢？
+
+由于不在同一个 JVM 上，所以不能取得堆上的引用。
+
+so how?
+
+
+
+- **服务器**：server 是个远程服务，它带有客户端会调用的方法的对象；
+- **客户端**：client 客户端
+- **服务器辅助设施**：Skeleton， 一个代理对象
+- **客户端辅助设施**：Stub， 一个代理对象，假装成远程的服务对象，
+
+![image-20190619232514235](/Users/mingjue/self/FullStackNotes/books/assets/image-20190619232514235.png)
+
+代理会**处理客户端和服务器的底层网络输入输出细节**，让你的客户端和程序好像在处理本机调用一样。它实际上是个**执行通信的对象**。
+
+代理对象会伪装成服务器对象，让客户端以为它调用的是远程的服务。
+
+客户端通过 RMI registry 获取 Stub 对象。
+
+原理跟 Binder 实现 RPC 非常相似啊~
+
+
+
+谁用到了 RMI ？：
+
+-  Servlet
+- EJB（Enterprise JavaBeans），J2EE
+  		适合并行远程服务
+- Jini
+- ...
 
