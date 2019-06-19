@@ -175,3 +175,138 @@ socket bufferreader
 
 
 
+### 17 包、jar存档文件和部署
+
+
+
+```shell
+//将 java 文件编译后的 class 文件放到指定目录
+javac -d directoryName javaName
+
+javac -d class HelloWorld.java
+
+//执行 .class 文件(不需要后缀)
+java HelloWorld
+```
+
+
+
+#### 构建一个可执行的 jar 文件
+
+**基本步骤**：
+
+1. 新建一个清单文件 `manifest.txt` ；
+2. 在清单文件里添加一行 `Main-Class:[类名]`，告诉 JVM 入口，比如`Main-Class:HelloWorld`, 这里要添加的类是拥有`main`方法的类；
+3. 把 class 文件跟清单文件一起打包成 jar `jar -cvmf manifest.txt [jarName] [class]`
+4. 执行 jar，`java -jar jarName`
+
+举例：
+
+![image-20190619113825785](/Users/mingjue/self/FullStackNotes/books/assets/image-20190619113825785.png)
+
+
+
+JVM 能从 jar 里找到 `main`方法，然后执行它。
+
+
+
+##### 有包名的类，编译成 Jar
+
+如果是有包名的，则需要指定包名，举个例子：
+
+Greeting.java
+
+```java
+package com.fyf;
+
+public class Greeting{
+	public static void main(String[]args){
+		System.out.println("Greeting");
+	}
+}
+```
+
+
+
+manifest.txt，需要加上包名
+
+```
+Main-Class: com.fyf.Greeting
+```
+
+
+
+编译成 class 文件：
+
+```java
+javac -d class Greeting.java
+```
+
+
+
+打包 jar，也需要注意包名:
+
+```shell
+jar -cvmf manifest.txt gr.jar ./com/fyf/Greeting.class
+```
+
+
+
+运行 jar :
+
+```
+➜  class java -jar gr.jar
+Greeting
+```
+
+
+
+class 目录下的产物：
+
+```
+➜  class ll
+total 16
+drwxr-xr-x  3 mingjue  staff   96  6 19 11:48 com
+-rw-r--r--  1 mingjue  staff  794  6 19 11:50 gr.jar
+-rw-r--r--  1 mingjue  staff   29  6 19 11:50 manifest.txt
+```
+
+
+
+#### 条列解压的 jar 命令
+
+`-tf` （table file），能够列出文件的列表。
+
+
+
+拿上面的 greeting 举例：
+
+```shell
+➜  class jar -tf gr.jar
+META-INF/
+META-INF/MANIFEST.MF
+com/fyf/Greeting.class
+```
+
+
+
+`META-INF` 代表 meta informatin 存放元数据，我们新建的 manifest 文件**不会**被带进 jar，但是它的内容会放进 `META-INF/MANIFEST.MF` 文件中。
+
+
+
+`-xf`  类似 unzip 命令，能够提取 META-INF 文件
+
+```
+jar -xf gr.jar
+```
+
+
+
+`META-INF/MANIFEST.MF` 的信息：
+
+```
+Manifest-Version: 1.0
+Created-By: 1.8.0_121 (Oracle Corporation)
+Main-Class: com.fyf.Greeting
+```
+
