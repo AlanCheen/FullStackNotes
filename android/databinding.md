@@ -15,11 +15,12 @@ DataBinding 是一个可以允许使用声明式（declarative）让我们在 la
 DataBinding 的优势：
 
 - 在 layout 里做绑定可以省去很多代码，提升可维护性；
-- 性能更好，防止空指针——why?TODO
 
+- 性能更好，防止空指针。
 
+  
 
-### 实战例子
+### DataBinding 在 Activity 中的实战运用
 
 
 
@@ -30,6 +31,10 @@ DataBinding 的优势：
 3. 通过 DataBindingUtil 给 Activity 设置布局；
 4. 给自动生成的 Binding 设置变量；
 5. Run App !
+
+
+
+注：Demo 地址，https://github.com/AlanCheen/LearnDataBinding
 
 
 
@@ -102,13 +107,27 @@ public class BasicDataBindingActivity extends AppCompatActivity {
 
 
 
-通过` DataBindingUtil.setContentView`设置布局，AS 会生成一个根据我们的 XML `basic_databinding.xml`命名的 `Binding` 文件。(一个抽象类 XBinding，一个实现类 XBindingImpl，暂时不展开)
+通过` DataBindingUtil.setContentView`设置布局，AS 会生成一个根据我们的 XML `basic_databinding.xml`命名的 `Binding` 文件，这个生成的类的名字命名规则：*把 XML 名字改成 Pascal 命名，然后再添加 Binding 作为后缀*，比如这里最终的是`BasicDatabindingBinding`。(一个抽象类 Binding，一个实现类 BindingImpl，暂时不展开)
 
-拿到这个 Binding，我们可以设置我们的 Student，这些类名字、方法名字都是有一定规律的。
+
+
+拿到这个 Binding，我们可以设置我们的 Student，Binding 为我们设置的 variable 生成了 `setter` 方法。
 
 
 
 运行 APP 就能看到这个 TextView 展示了 "程序亦非猿"，这样就是一个非常基本的 DataBinding 的运用例子了。
+
+
+
+#### 在 Fragment、RecyclerView、ListView 中使用
+
+
+
+```java
+BasicDatabindingBinding binding = BasicDatabindingBinding.inflate(layoutInflater, viewGroup, false);
+// or
+BasicDatabindingBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.basic_databinding, viewGroup, false);
+```
 
 
 
@@ -134,17 +153,60 @@ DataBinding 用在 XML ，那是本来我们用来写布局的，如果要用来
 
   
 
-上面的例子里，`android:text="@{student.name}"` 就表示 text 跟 student.name 进行了绑定，name 是什么，text 就会展示什么。
+上面的例子里，`android:text="@{student.name}"` 就表示 text 跟 student.name 进行了绑定，name 是什么，text 就会展示什么。student.name 会尝试绑定 name 属性、 name() 方法、getName() 方法。
 
 
 
-student.name 会尝试绑定 name 属性、 name() 方法、getName() 方法。(谁优先呢？TODO)
+### 支持的表达式
+
+https://developer.android.com/topic/libraries/data-binding/expressions
+
+- Mathematical `+ - / * %`
+- String concatenation `+`
+- Logical `&& ||`
+- Binary `& | ^`
+- Unary `+ - ! ~`
+- Shift `>> >>> <<`
+- Comparison `== > < >= <=` (Note that `<` needs to be escaped as `&lt;`)
+- `instanceof`
+- Grouping `()`
+- Literals - character, String, numeric, `null`
+- Cast
+- Method calls
+- Field access
+- Array access `[]`
+- Ternary operator `?:`
 
 
 
+举例：
+
+```xml
+android:text="@{String.valueOf(index + 1)}"
+android:visibility="@{age > 13 ? View.GONE : View.VISIBLE}"
+android:transitionName='@{"image_" + id}'
+```
 
 
 
+#### 不支持的操作
+
+The following operations are missing from the expression syntax that you can use in managed code:
+
+- `this`
+- `super`
+- `new`
+- Explicit generic invocation
+
+
+
+### Binding Adapters
+
+https://developer.android.com/topic/libraries/data-binding/binding-adapters
+
+
+
+属性跟布局的绑定实际上是由 BindingAdatpters 来完成的。
 
 
 
@@ -203,3 +265,5 @@ https://developer.android.com/topic/libraries/architecture/livedata.html#the_adv
 compilerv2：https://juejin.im/entry/5af91556f265da0b736dc25e
 
 https://medium.com/androiddevelopers/data-binding-lessons-learnt-4fd16576b719
+
+文中 Demo 地址：https://github.com/AlanCheen/LearnDataBinding
