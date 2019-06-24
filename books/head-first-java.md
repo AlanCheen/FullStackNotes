@@ -2,7 +2,9 @@
 
 [TOC]
 
-> 本文 GitHub 地址：
+> 本文 GitHub 地址：https://github.com/AlanCheen/FullStackNotes
+>
+> 作者：程序亦非猿
 
 ### 1 基本概念
 
