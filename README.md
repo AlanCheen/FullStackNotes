@@ -57,6 +57,30 @@
 
 
 
+### 工具
+
+
+
+### 理财
+
+
+
+### 英语
+
+
+
+### 读书
+
+
+
+[《Head First Java》](./books/head-first-java.md)
+
+[《人性的弱点》](./books/ren-xing-de-ruo-dian.md)
+
+[《不上班也有钱》](./books/bu-shang-ban-ye-you-qian.md)
+
+
+
 ### 优秀资料
 
 [developer-roadmap](https://github.com/kamranahmedse/developer-roadmap)
