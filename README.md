@@ -1,8 +1,6 @@
 # Full Stack Notes
 
-
-
-> To Be A Full  Stack Engineer. 
+> To Be A Full  Stack Engineer.  —— 程序亦非猿
 
 > 程序亦非猿，阿里资深工程师；
 >
@@ -71,7 +69,7 @@
 
 ### 读书
 
-
+> 万般皆下品，惟有读书高。
 
 [《Head First Java》](./books/head-first-java.md)
 
@@ -79,7 +77,9 @@
 
 [《不上班也有钱》](./books/bu-shang-ban-ye-you-qian.md)
 
+[《Java 核心技术 卷 1》](./books/core-java-1-10th.md)
 
+[《小狗钱钱》](./books/xiao-gou-qian-qian.md)
 
 ### 优秀资料
 
