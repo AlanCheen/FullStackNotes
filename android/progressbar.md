@@ -4,6 +4,15 @@
 
 
 
+### 常用属性
+
+
+
+- `style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"`，设置水平还是转圈等；
+- `android:progressDrawable="@drawable/xxx"`，设置进度条的样式；
+- `android:progress="20"`，设置进度；
+- `android:secondaryProgress=""`，设置次级进度；
+
 
 
 ### 自定义 ProgressBar 展示的样式
@@ -49,5 +58,21 @@
     </item>
 
 </layer-list>
+```
+
+
+
+```xml
+<ProgressBar
+    android:id="@+id/progress_bar"
+    style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+    android:layout_width="176dp"
+    android:layout_height="3dp"
+    android:layout_marginTop="3dp"
+    android:progressDrawable="@drawable/custom_progress"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:progress="30"
+    />
 ```
 
