@@ -75,3 +75,5 @@ Non-ui fragment 不会回调`onCreateView` 。
 https://developer.android.com/guide/components/fragments?hl=zh-CN
 
 https://developer.android.com/reference/android/app/Fragment
+
+https://luboganev.dev/blog/headless-fragments/
