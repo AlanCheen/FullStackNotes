@@ -1,4 +1,4 @@
-# 掌握 DataBinding 
+# 掌握 DataBinding 理论篇
 
 > Android 4.0 (API level 14) or higher
 
