@@ -119,7 +119,7 @@ z = null;
 
 #### null 的真相
 
-![image-20190617161804907](/Users/mingjue/self/FullStackNotes/books/assets/image-20190617161804907.png)
+![image-20190617161804907](http://ww2.sinaimg.cn/large/006tNc79ly1g5a19tyvfmj30hw0f0wfr.jpg)
 
 
 
@@ -131,12 +131,12 @@ null 只是把引用清空了而已。
 
 - **静态方法**
   		静态方法不能调用非静态变量
-  		静态方法也不能调用非静态方法
+    		静态方法也不能调用非静态方法
 - **静态变量**
   		静态变量的值对所有的实例来说都是相同的
-  		静态变量是共享的，同一类所有的实例共享一份静态变量
-  		静态变量是在类被加载时初始化的。
-  		静态变量会在该类的任何静态方法执行之前就初始化。
+    		静态变量是共享的，同一类所有的实例共享一份静态变量
+    		静态变量是在类被加载时初始化的。
+    		静态变量会在该类的任何静态方法执行之前就初始化。
 - **静态的 final 变量是常数**
 - **静态初始化程序**（`static initializer`）是一段在加载类时会执行的程序代码，它会在其他程序可以使用该类之前就执行，所以释放放静态 final 变量的起始程序。（static 代码块）
 
@@ -206,7 +206,7 @@ java HelloWorld
 
 举例：
 
-![image-20190619113825785](/Users/mingjue/self/FullStackNotes/books/assets/image-20190619113825785.png)
+![image-20190619113825785](http://ww4.sinaimg.cn/large/006tNc79ly1g5a19vtfu7j30nm09ugmu.jpg)
 
 
 
@@ -341,7 +341,7 @@ so how?
 - **服务器辅助设施**：Skeleton， 一个代理对象
 - **客户端辅助设施**：Stub， 一个代理对象，假装成远程的服务对象，
 
-![image-20190619232514235](/Users/mingjue/self/FullStackNotes/books/assets/image-20190619232514235.png)
+![image-20190619232514235](http://ww4.sinaimg.cn/large/006tNc79ly1g5a19ut03gj31340hyadb.jpg)
 
 代理会**处理客户端和服务器的底层网络输入输出细节**，让你的客户端和程序好像在处理本机调用一样。它实际上是个**执行通信的对象**。
 

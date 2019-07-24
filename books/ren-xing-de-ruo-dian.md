@@ -1,14 +1,16 @@
 # 《人性的弱点》
 
+> 本文 GitHub 地址：https://github.com/AlanCheen/FullStackNotes
+>
+> 作者：程序亦非猿
+
+---
+
+
+
 *——戴尔·卡耐基*
 
 > 一个人的成功只有15%，归结于他的专业知识，另外的85%要归结于他的表达思想、领导他人即唤起他人热情的能力。
-
-
-
-笔记作者：程序亦非猿
-
-笔记地址：https://github.com/AlanCheen/FullStackNotes
 
 ## 第一篇 与人相处的基本技巧。
 
