@@ -214,7 +214,7 @@ LiveData 的使用流程从 `observe()` 开始，咱们尝试从 `observe()` 方
 
 到这里 【2.1】、【2.3】的问题已经有了答案：
 
-**【2.1】答**：LifeData 在 observe 方法中用 LifecycleBoundObserver 包装了 observer ，并且通过它绑定了owner。<br />**【2.3】答**：LifecycleBoundObserver 在 onStateChanged() 方法里处理了生命周期改变的事件，当接收到 DESTROYED 的事件会自动解除跟 owner 的绑定。
+**【2.1】答**：LiveData 在 observe 方法中用 LifecycleBoundObserver 包装了 observer ，并且通过它绑定了owner。<br />**【2.3】答**：LifecycleBoundObserver 在 onStateChanged() 方法里处理了生命周期改变的事件，当接收到 DESTROYED 的事件会自动解除跟 owner 的绑定。
 
 **这里需要注意的是，当我们调用 observe() 注册后，由于绑定了 owner，所以在 active 的情况下，LiveData 如果有数据，则 Observer 会立马接受到该数据修改的通知。**
 
