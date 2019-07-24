@@ -70,14 +70,6 @@ a[k]_address = base_address + (k-1)*type_size
 
 
 
-
-
-
-
-
-
-
-
 ### 数组的特点
 
 - 支持随机访问;
