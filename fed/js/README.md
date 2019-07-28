@@ -2,6 +2,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 JS 的问题：
 
 1. 语法太灵活导致开发大型 Web 项目困难；解法：TypeScript
@@ -50,3 +60,5 @@ WebAssembly 是一份`字节码标准`，以字节码的形式依赖虚拟机在
 腾讯：
 
 [WebAssembly 不完全指北](https://juejin.im/post/5d367656f265da1b904c2126)
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript

@@ -1,4 +1,4 @@
-
+# CS English
 
 
 
@@ -18,3 +18,8 @@ Non-static inner class holds a reference to the containing class. When you decla
 - `hence`，因此
 - `hence the memory leak`，内存泄露
 
+
+
+
+
+- `debuggable`，可调式的

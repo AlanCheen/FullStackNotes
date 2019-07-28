@@ -1,9 +1,5 @@
 # 【AAC 系列二】深入理解架构组件的基石：Lifecycle
 
-![kelly-sikkema-526104-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1552988340969-2064c85f-edb2-438f-b768-34bc676ebd67.jpeg#align=left&display=inline&height=497&name=kelly-sikkema-526104-unsplash.jpg&originHeight=853&originWidth=1280&size=279827&status=done&width=746)
-
-<a name="9cf27a82"></a>
-
 ### 0. 前言
 
 > 本文是深入理解「Android Architecture Components」系列文章第二篇
@@ -17,7 +13,7 @@
 
 本文带大家深入了解 Lifecycle 。
 
-**注意：本文基于 Lifecycle 1.1.1 版本，Android API 26 ，依赖如下图。**<br />**<br />**![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1552989306600-927ab748-d0fe-469a-8cb8-fadf877f3585.png#align=left&display=inline&height=195&name=image.png&originHeight=390&originWidth=934&size=245051&status=done&width=467)**<br />**<br />**<br />**并假设读者对 Lifecycle 有基本的了解，我绘制了一个基本的类图，如果对于下面类图所涉及到的类都还算了解则可以继续阅读下去，如果完全不知道，建议阅读一些教程先。**<br />**<br />**![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1552990370952-664b74ca-86f5-47de-9706-ab40180b7e60.png#align=left&display=inline&height=217&name=image.png&originHeight=866&originWidth=1222&size=185655&status=done&width=306)**
+**注意：本文基于 Lifecycle 1.1.1 版本，Android API 26 ，依赖如下图。**<br />**<br />**![image.png](http://ww2.sinaimg.cn/large/006tNc79ly1g5cd7a3ocxj30py0auagf.jpg)**<br />**<br />**<br />**并假设读者对 Lifecycle 有基本的了解，我绘制了一个基本的类图，如果对于下面类图所涉及到的类都还算了解则可以继续阅读下去，如果完全不知道，建议阅读一些教程先。**<br />**<br />**![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1552990370952-664b74ca-86f5-47de-9706-ab40180b7e60.png)**
 
 <a name="e2000022"></a>
 ### 1. Lifecycle 使用基础
@@ -250,7 +246,7 @@ Lifecycle  中定义了 `Event` : 表示生命周期事件， `State` : 表�
 
 <a name="48978dd0"></a>
 ##### 2.3.3 Event 与 State 的关系：
-![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1553001470400-d1b9ec98-680c-4a26-a854-2ce2ff7c14da.png#align=left&display=inline&height=286&name=image.png&originHeight=381&originWidth=700&size=75690&status=done&width=525)
+![image.png](http://ww3.sinaimg.cn/large/006tNc79ly1g5cd6gu588j30jg0alwg9.jpg)
 
 (图1.图来源见【8.2】)
 
@@ -556,21 +552,21 @@ class ReflectiveGenericLifecycleObserver implements GenericLifecycleObserver {
 
 核心类 UML 图整理如下：
 
-![Lifecycle-UML.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1553063751102-dcb2b668-2a0c-425b-bbcd-5451555c79d7.jpeg#align=left&display=inline&height=504&name=Lifecycle-UML.jpg&originHeight=1436&originWidth=2124&size=333296&status=done&width=746)<br />(图2. Lifecycle-UML图)
+![Lifecycle-UML.jpg](http://ww4.sinaimg.cn/large/006tNc79ly1g5cd8iumhcj318d0u0gud.jpg)<br />(图2. Lifecycle-UML图)
 
 <a name="1e15f81c"></a>
 #### 4.1 Lifecycle 原理时序图
 
 图中起始于 onCreate ，顺便利用 onCreate 描绘整个流程。（其他生命周期原理一样，不重复画了）
 
-![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1553052014991-b111eb1c-8991-4b30-aa34-55e55ece4154.png#align=left&display=inline&height=427&name=image.png&originHeight=1476&originWidth=2580&size=389626&status=done&width=746)<br />(图3. Lifecycle 时序图)<br />
+![image.png](http://ww2.sinaimg.cn/large/006tNc79ly1g5cd8bel9hj31gg0u0gvw.jpg)<br />(图3. Lifecycle 时序图)<br />
 
 <a name="f4ac431e"></a>
 #### 4.3 Lifecycle State 与 Event 的关系图
 
 图展示了 State 与 Event 的关系，以及随着生命周期走向它们发生的变化。
 
-![Lifecycle-Seq2.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1553828956237-8f7848ad-aafc-4412-95b1-d0968b11f71a.png#align=left&display=inline&height=336&name=Lifecycle-Seq2.png&originHeight=647&originWidth=1437&size=100376&status=done&width=746)<br />(图4. State 与 Event 的关系图)
+![Lifecycle-Seq2.png](http://ww3.sinaimg.cn/large/006tNc79ly1g5cd86nu4tj313x0hz0v6.jpg)<br />(图4. State 与 Event 的关系图)
 
 <a name="f34f38b9"></a>
 ### 5. Lifecycle 的实战应用
@@ -591,7 +587,7 @@ Lifecycle 的应用场景非常广泛，我们可以利用 Lifecycle 的机制�
 
 代码实现如下：
 
-![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1553048759936-36f29a45-c683-4d1d-979e-019a492e18d2.png#align=left&display=inline&height=889&name=image.png&originHeight=1778&originWidth=2048&size=390848&status=done&width=1024)
+![image.png](http://ww4.sinaimg.cn/large/006tNc79ly1g5cd82685zj30yk0u0n7h.jpg)
 
 该代码已经包含在我的开源库 Pandora 里了，可以访问：[https://github.com/AlanCheen/Pandora](https://github.com/AlanCheen/Pandora) ，直接依赖使用，欢迎 star。
 
@@ -605,9 +601,9 @@ Lifecycle 的应用场景非常广泛，我们可以利用 Lifecycle 的机制�
 <a name="12eaa1dd"></a>
 ### 6. 知识点梳理和汇总
 
-1. `**Lifecycle**`  库通过在 `SupportActivity`  的 `onCreate`  中注入 `ReportFragment`  来感知发生命周期；
-1. `**Lifecycle**`  抽象类，是 `Lifecycle`  库的核心类之一，它是对生命周期的抽象，定义了生命周期事件以及状态，通过它我们可以获取当前的生命周期状态，同时它也奠定了观察者模式的基调；（我是党员你看出来了吗:-D）
-1. `**LifecycleOwner**`  ，描述了一个拥有生命周期的组件，可以自己定义，不过通常我们不需要，直接使用 `AppCompatActivity`  等即可；
+1. `Lifecycle`  库通过在 `SupportActivity`  的 `onCreate`  中注入 `ReportFragment`  来感知发生命周期；
+1. `Lifecycle`  抽象类，是 `Lifecycle`  库的核心类之一，它是对生命周期的抽象，定义了生命周期事件以及状态，通过它我们可以获取当前的生命周期状态，同时它也奠定了观察者模式的基调；（我是党员你看出来了吗:-D）
+1. `LifecycleOwner`  ，描述了一个拥有生命周期的组件，可以自己定义，不过通常我们不需要，直接使用 `AppCompatActivity`  等即可；
 1. `**LifecycleRegistry**`  是 `Lifecycle`  的实现类，它负责接管生命周期事件，同时也负责 `Observer`  的注册以及通知；
 1. `**ObserverWithState**` ，是 Observer 的一个封装类，是它最终 通过 `ReflectiveGenericLifecycleObserve` 调用了我们用注解修饰的方法；
 1. `**LifecycleObserver**` ，Lifecycle 的观察者，利用它我们可以享受 Lifecycle 带来的能力；
@@ -628,7 +624,8 @@ Lifecycle 的应用场景非常广泛，我们可以利用 Lifecycle 的机制�
 
 尽请期待下一篇！
 
-<a name="7ba2d9c6"></a>
+
+
 ### 8. 参考与推荐
 
 1. [https://developer.android.com/topic/libraries/architecture](https://developer.android.com/topic/libraries/architecture)

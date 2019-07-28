@@ -118,7 +118,7 @@ error: Error: No resource type specified (at 'xxx' with value '@={xxxx}')
 
 小技巧：可以通过 AS 一键转换成 data binding layout：
 
-![image-20190620211341946](/Users/mingjue/self/FullStackNotes/android/assets/image-20190620211341946.png)
+![image-20190620211341946](http://ww4.sinaimg.cn/large/006tNc79ly1g5ccom3hofj30dh04cmys.jpg)
 
 
 

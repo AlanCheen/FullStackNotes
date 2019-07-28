@@ -463,4 +463,5 @@ EventBus 基于观察者模式，LiveData 也是，所以 LiveData 可以被用�
 1. [https://developer.android.com/reference/android/arch/lifecycle/Transformations.html](https://developer.android.com/reference/android/arch/lifecycle/Transformations.html)
 1. [https://github.com/googlesamples/android-architecture-components](https://github.com/googlesamples/android-architecture-components)
 1. [https://github.com/googlesamples/android-sunflower](https://github.com/googlesamples/android-sunflower)
+1. https://juejin.im/post/5b2b1b2cf265da5952314b63
 

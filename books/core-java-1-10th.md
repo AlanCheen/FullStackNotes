@@ -69,5 +69,36 @@ Core Java Volume 1-Fundamentals
 
 ### 第 9 章 集合
 
+#### 9.1 
+
+集合类将接口与实现分离。
+
+队列，先进先出，通常有两种实现方式：
+
+1. 一种是使用`循环数组`，效率比链表更高，但是是个有界集合，容量有限；
+2. 另一种是使用`链表`，效率相对低，但容量无限。
+
+
+
+Iterator.next 方法跟 remove 方法相互依赖，如果没有调用 next 就调用 remove 则会报错，也就是说调用 remove前必须调用 next，并且 remove 移除的就是上一次调用 next 方法时返回的元素。
+
+![image-20190725201419186](http://ww3.sinaimg.cn/large/006tNc79ly1g5ccitlm10j30sw0lggy4.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

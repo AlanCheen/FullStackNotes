@@ -22,7 +22,7 @@ Android Studio 引入 so 文件方法有二。
 
 举个🌰：
 
-![image-20190702154102448](/Users/mingjue/self/FullStackNotes/android/assets/image-20190702154102448.png)
+![image-20190702154102448](http://ww4.sinaimg.cn/large/006tNc79ly1g5ccomdbycj30co080jsf.jpg)
 
 ### 二 通过 libs 引入
 
@@ -56,7 +56,7 @@ Android Studio 引入 so 文件方法有二。
 
 举个🌰：
 
-![image-20190702170503415](/Users/mingjue/self/FullStackNotes/android/assets/image-20190702170503415.png)
+![image-20190702170503415](http://ww2.sinaimg.cn/large/006tNc79ly1g5ccomsm28j3090039t94.jpg)
 
 
 
