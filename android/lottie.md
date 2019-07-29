@@ -1,8 +1,5 @@
 # 【源码分析】Lottie 实现炫酷动画背后的原理
 
-![mat-reding-1525395-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1555938410737-fe6c0155-e2c9-4a5a-93bf-7b260d05e800.jpeg#align=left&display=inline&height=1119&name=mat-reding-1525395-unsplash.jpg&originHeight=4890&originWidth=3260&size=559591&status=done&width=746)
-<a name="2a1d9fae"></a>
-
 ## 0. 前言
 
 自我在内网发布了一篇关于 Lottie 的原理分析的文章之后，就不断有同事来找我询问关于 Lottie 的各种东西，最近又有同事来问，就想着可能对大家也会有所帮助，就稍作处理后分享出来。
@@ -21,9 +18,9 @@ Lottie 是 airbnb 发布的库，它可以将 AE 制作的动画 在 Android&iOS
 
 来看几个官方给出的动画效果案例：
 
-![](https://cdn.nlark.com/yuque/0/2019/gif/138547/1553765030763-eea6acb9-c1e8-44cb-8709-fb3e30010caf.gif#align=left&display=inline&height=373&originHeight=400&originWidth=800&size=0&status=done&width=746)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g5gu4zq461g30m80b4gs9.gif)
 
-![](https://cdn.nlark.com/yuque/0/2019/gif/138547/1553765031719-0f6fe612-c467-4fe0-9b36-61a6077817a3.gif#align=left&display=inline&height=373&originHeight=400&originWidth=800&size=0&status=done&width=746)
+![](http://ww2.sinaimg.cn/large/006tNc79ly1g5gu4w4nzkg30m80b4qip.gif)
 
 有没有很炫酷？
 
@@ -45,9 +42,10 @@ animationView.playAnimation();
 这么方便的背后，原理是什么呢？
 
 <a name="489878a0"></a>
+
 ## 2. TL;DR
 
-bodymovin 将 AE 动画导出为 ,该  描述了该动画，而 lottie-android 的原理就是将  描述的动画用 native code 翻译出来， 其核心原理是  **canvas 绘制**。对，lottie 的动画是靠纯 canvas 画出来的！！！动起来则是靠的属性动画。(`ValueAnimator.ofFloat(0f, 1f);` )
+bodymovin 将 AE 动画导出为 json ,该 json 描述了该动画，而 lottie-android 的原理就是将  描述的动画用 native code 翻译出来， 其核心原理是  **canvas 绘制**。对，lottie 的动画是靠纯 canvas 画出来的！！！动起来则是靠的属性动画。(`ValueAnimator.ofFloat(0f, 1f);` )
 
 说具体点就是 lottie 随属性动画修改 progress，每一个 Layer 根据当前的 progress 绘制所对应的帧内容，progress 值变为1，动画结束。（有点类似于帧动画）
 
@@ -64,7 +62,7 @@ Lottie 提供了一个 LottieAnimationView 给用户使用，而实际 Lottie �
 
 它们的关系：
 
-![](https://cdn.nlark.com/yuque/0/2019/jpg/138547/1553765029902-cc2d01de-1175-4fc9-b36a-d5b9cff0b6a1.jpg#align=left&display=inline&height=722&originHeight=852&originWidth=880&size=0&status=done&width=746)
+![](https://cdn.nlark.com/yuque/0/2019/jpg/138547/1553765029902-cc2d01de-1175-4fc9-b36a-d5b9cff0b6a1.jpg)
 
 <a name="4879d65c"></a>
 ## 4. 文件的属性含义
@@ -134,8 +132,8 @@ Lottie 提供了一个 LottieAnimationView 给用户使用，而实际 Lottie �
 | h | 图片高度 |
 | p | 图片名称 |
 
-
 <a name="beb42690"></a>
+
 #### b) layers
 
 图层信息，相关类：Layer、BaseLayer以及 BaseLayer 的实现类。
@@ -177,9 +175,10 @@ Layer 可以理解为图层，跟 PS 等工具的概念相同，每个 Layer 负
 
 下图为 Layer 相关类图：
 
-![](https://cdn.nlark.com/yuque/0/2019/jpg/138547/1553765029894-1ec26008-6859-4f9f-b7f8-fa00d790a39c.jpg#align=left&display=inline&height=790&originHeight=890&originWidth=840&size=0&status=done&width=746)
+![](https://cdn.nlark.com/yuque/0/2019/jpg/138547/1553765029894-1ec26008-6859-4f9f-b7f8-fa00d790a39c.jpg)
 
 <a name="4afd9264"></a>
+
 ## 5. Lottie 的适配原理
 
 在开始使用 Lottie 的时候，我们团队设计动画走的跟设计图片一样的路子，想设计2x,3x 多份资源进行适配。但是，通过阅读源码发现其实 Lottie本身在 Android 平台已经做了适配工作，而且适配原理很简单，解析  时，从  读取宽高之后 会再乘以手机的密度。再在使用的时候判断适配后的宽高是否超过屏幕的宽高，如果超过则再进行缩放。以此保障 Lottie 在 Android 平台的显示效果。
@@ -288,7 +287,7 @@ LottieAnimationView 本身是个 ImageView，所以它的绘制流程跟 ImageVi
 上面的代码中的 layers 是该动画所包含的层，在 CompositionLayer 的 drawLayer 方法里遍历了动画所有的层，并调用layers 的 draw 方法，这样就完成了所有的绘制。
 
 <a name="df5cc73c"></a>
-## 7. Lottie的动画原理
+## 7. Lottie 的动画原理
 
 上一小节讲了 Lottie 的绘制原理，但是 Lottie 是用来做动画的，光理解它的绘制原理是不够的，对于动画，更重要的是它怎么动起来的。
 
@@ -391,11 +390,11 @@ PS: 动画过程中的一些变量比如 scale，都是由BaseKeyframeAnimation�
 
 动画原理流程稍微有点长，也稍微有些复杂，我绘制了一张图梳理了一下整体的流程，方便理解：
 
-![](https://cdn.nlark.com/yuque/0/2019/jpg/138547/1553765029868-f5efbbd3-052c-4c15-af6f-0da8979252c4.jpg#align=left&display=inline&height=428&originHeight=904&originWidth=1576&size=0&status=done&width=746)
+![](http://ww3.sinaimg.cn/large/006tNc79ly1g5guad84sej317s0p4q56.jpg)
 
 BaseKeyframeAnimation 类图：
 
-![](https://cdn.nlark.com/yuque/0/2019/jpg/138547/1553765029875-19353495-fded-4c29-aefb-1e454418e924.jpg#align=left&display=inline&height=694&originHeight=884&originWidth=950&size=0&status=done&width=746)
+![](http://ww1.sinaimg.cn/large/006tNc79ly1g5guahr1mdj30qe0okad0.jpg)
 
 <a name="f92f39cb"></a>
 ## 8. 总结

@@ -273,9 +273,10 @@ SimpleCallAdapter.adapt 很简单，创建一个 Observable获取CallOnSubscribe
 
 总体的流程图整理如下：
 
-![](http://upload-images.jianshu.io/upload_images/531570-cc1fefbd3904cb11.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240#align=left&display=inline&height=675&originHeight=675&originWidth=440&status=done&width=440)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g5gudd15svj30c80irmxp.jpg)
 
 <a name="5cb4bb70"></a>
+
 ## [](#7gqavd)解答疑问
 
 对于之前的疑问可以作答了。

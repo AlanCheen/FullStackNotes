@@ -1,5 +1,7 @@
 # 【AAC 系列二】深入理解架构组件的基石：Lifecycle
 
+[TOC]
+
 ### 0. 前言
 
 > 本文是深入理解「Android Architecture Components」系列文章第二篇
@@ -70,6 +72,7 @@ D/MainActivity: LifecycleObserver onResume() called
 1. **注解方法的调用问题**： `是什么调用了我们使用注解修饰的方法` ？
 
 <a name="7f514a69"></a>
+
 ### 2. 感知生命周期的原理
 
 <a name="610796fd"></a>
@@ -160,8 +163,8 @@ public class ReportFragment extends Fragment {
 
 一看代码我们就知道了，它重写了生命周期回调的方法，确实是这个 ReportFragment 在发挥作用，**Lifecycle 利用了 Fragment 来实现监听生命周期，并在生命周期回调里调用了内部 `dispatch`  的方法来分发生命周期事件**。(怎么分发后面讲)
 
-
 <a name="4bc29167"></a>
+
 #### 2.2 幕后“黑手” SupportActivity
 
 从方法来看注入 Fragment 的方法应该是调用 `injectIfNeededIn(Activity)`  的地方了。
@@ -198,6 +201,7 @@ public class SupportActivity extends Activity implements LifecycleOwner, Compone
 `LifecycleRegistry`  是 Lifecycle 的实现，并负责管理 `Observer` ，在上面【2】章节的 `dispatch`  方法中已经看到了该类的出现，它的 `handleLifecycEvent`  接受了生命周期的回调。
 
 <a name="dceb7b2f"></a>
+
 #### 2.3 Lifecycle 的生命周期事件与状态的定义
 
 这小节补充一下 `Lifecycle`  的回调与 Activity 、Fragment 的生命周期对标相关知识，后面分析会出现。
@@ -205,6 +209,7 @@ public class SupportActivity extends Activity implements LifecycleOwner, Compone
 Lifecycle  中定义了 `Event` : 表示生命周期事件， `State` : 表示当前状态。
 
 <a name="dc278a7c"></a>
+
 ##### 2.3.1 Lifecycle.Event 
 
 `Lifecycle`  定义的生命周期事件，与 Activity 生命周期类似。
@@ -548,6 +553,7 @@ class ReflectiveGenericLifecycleObserver implements GenericLifecycleObserver {
 如果被代码绕晕了，也没关系，我画了类图以及时序图，帮助大家理解，配合着类图跟时序图看代码，会容易理解很多。
 
 <a name="8870bf02"></a>
+
 #### 4.1 Lifecycle 相关原理类的 UML 图
 
 核心类 UML 图整理如下：
@@ -555,6 +561,7 @@ class ReflectiveGenericLifecycleObserver implements GenericLifecycleObserver {
 ![Lifecycle-UML.jpg](http://ww4.sinaimg.cn/large/006tNc79ly1g5cd8iumhcj318d0u0gud.jpg)<br />(图2. Lifecycle-UML图)
 
 <a name="1e15f81c"></a>
+
 #### 4.1 Lifecycle 原理时序图
 
 图中起始于 onCreate ，顺便利用 onCreate 描绘整个流程。（其他生命周期原理一样，不重复画了）
@@ -562,6 +569,7 @@ class ReflectiveGenericLifecycleObserver implements GenericLifecycleObserver {
 ![image.png](http://ww2.sinaimg.cn/large/006tNc79ly1g5cd8bel9hj31gg0u0gvw.jpg)<br />(图3. Lifecycle 时序图)<br />
 
 <a name="f4ac431e"></a>
+
 #### 4.3 Lifecycle State 与 Event 的关系图
 
 图展示了 State 与 Event 的关系，以及随着生命周期走向它们发生的变化。
@@ -604,12 +612,13 @@ Lifecycle 的应用场景非常广泛，我们可以利用 Lifecycle 的机制�
 1. `Lifecycle`  库通过在 `SupportActivity`  的 `onCreate`  中注入 `ReportFragment`  来感知发生命周期；
 1. `Lifecycle`  抽象类，是 `Lifecycle`  库的核心类之一，它是对生命周期的抽象，定义了生命周期事件以及状态，通过它我们可以获取当前的生命周期状态，同时它也奠定了观察者模式的基调；（我是党员你看出来了吗:-D）
 1. `LifecycleOwner`  ，描述了一个拥有生命周期的组件，可以自己定义，不过通常我们不需要，直接使用 `AppCompatActivity`  等即可；
-1. `**LifecycleRegistry**`  是 `Lifecycle`  的实现类，它负责接管生命周期事件，同时也负责 `Observer`  的注册以及通知；
-1. `**ObserverWithState**` ，是 Observer 的一个封装类，是它最终 通过 `ReflectiveGenericLifecycleObserve` 调用了我们用注解修饰的方法；
-1. `**LifecycleObserver**` ，Lifecycle 的观察者，利用它我们可以享受 Lifecycle 带来的能力；
-1. `**ReflectiveGenericLifecycleObserver**`，它存储了我们在 Observer 里注解的方法，并在生命周期发生改变的时候最终通过反射的方式调用对应的方法。
+1. `LifecycleRegistry`  是 `Lifecycle`  的实现类，它负责接管生命周期事件，同时也负责 `Observer`  的注册以及通知；
+1. `ObserverWithState` ，是 Observer 的一个封装类，是它最终 通过 `ReflectiveGenericLifecycleObserve` 调用了我们用注解修饰的方法；
+1. `LifecycleObserver` ，Lifecycle 的观察者，利用它我们可以享受 Lifecycle 带来的能力；
+1. `ReflectiveGenericLifecycleObserver`，它存储了我们在 Observer 里注解的方法，并在生命周期发生改变的时候最终通过反射的方式调用对应的方法。
 
 <a name="7e4acf90"></a>
+
 ### 7. 总结
 
 **Lifecycle 是一个专门用来处理生命周期的库，它能够帮助我们将 Acitivity、Framgent 的生命周期处理与业务逻辑处理进行完全解耦，让我们能够更加专注于业务；通过解耦让 Activity、Fragment 的代码更加可读可维护。**

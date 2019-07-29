@@ -6,7 +6,7 @@
 
  
 
-学习一下Android 中加载类的过程，在 [Android ClassLoader](./android-classloader.md) 中学到了BaseDexClassLoader 有个成员变量 DexPathList ，它代理了 BaseClassLoader 的所有方法，来了解下。
+学习一下Android 中加载类的过程，在 [Android ClassLoader](./android-classloader.md) 中学到了BaseDexClassLoader 有个成员变量 `DexPathList` ，它代理了 BaseClassLoader 的所有方法，来了解下。
 
 
 

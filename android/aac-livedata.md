@@ -1,9 +1,5 @@
 # 【AAC 系列三】深入理解架构组件：LiveData
 
-![mj-tangonan-1540675-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1557131045935-3b37e4fb-658b-4d27-956b-eff115f51352.jpeg#align=left&display=inline&height=853&name=mj-tangonan-1540675-unsplash.jpg&originHeight=853&originWidth=1280&size=397107&status=done&width=1280)
-
-<a name="9cf27a82"></a>
-
 [TOC]
 
 ### 0. 前言
@@ -41,6 +37,7 @@ LiveData 是 Android Architecture Components 中的一员，先看下官方是�
 本文将围绕此展开。
 
 <a name="d7f29183"></a>
+
 ### 1. LiveData 的基本使用
 
 虽然 LiveData 通常跟 ViewModel 配合使用，不过也可以单独使用，为了简单起见，这里不配合 ViewModel。
@@ -80,7 +77,7 @@ liveString.postValue("程序亦非猿");
 
 同时提前看下我整理的 LiveData UML 图，对 LiveData 有个整体的了解，后续的涉及到的类都在这里了，有助于理解。
 
-![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1554969110238-9a1135e2-8298-4e08-85f9-c6e7153772c8.png#align=left&display=inline&height=359&name=image.png&originHeight=718&originWidth=817&size=285251&status=done&width=409)<br />(图1.LiveData 类图)
+![image.png](http://ww2.sinaimg.cn/large/006tNc79ly1g5gstkji8aj30mp0jyjyu.jpg)<br />(图1.LiveData 类图)
 
 OK， here we go!
 
@@ -225,6 +222,7 @@ observe--><br />  onStateChanged--><br />    activeStateChanged--><br />   
 可以称之为**生命周期改变触发的流程，另外还有一种流程是 postValue&setValue 触发的流程，共两种。**
 
 <a name="73851cc0"></a>
+
 #### 2.3 activeStateChanged(boolean) 
 
 在 activeStateChanged() 方法里，处理了 onActive() 跟 onInactive() 回调的相关逻辑处理，并且调用了dispatchingValue(this) 。（MediatorLiveData 用到了 onActive() 跟 onInactive() 有兴趣自行了解，这里不展开）
@@ -306,6 +304,7 @@ dispatchingValue 这里分两种情况：
 需要着重讲一下。
 
 <a name="7e259814"></a>
+
 ##### 2.4.1 ObserverWrapper 不为 null 的情况
 
 上面提到过，LifecycleBoundObserver.onStateChanged 方法里调用了 activeStateChanged ，而该方法调用dispatchingValue(this);传入了 this ，也就是 LifecycleBoundObserver ，这时候不为 null 。
@@ -313,6 +312,7 @@ dispatchingValue 这里分两种情况：
 **也就是说生命周期改变触发的流程就是这种情况，这种情况下，只会通知跟该 Owner 绑定的 Observer。**
 
 <a name="7a435db2"></a>
+
 ##### 2.4.2 ObserverWrapper 为 null 的情况
 
 上面我也提前说了，除了生命周期改变触发的流程外，还有 postValue&setValue 流程，来看下这俩方法。
@@ -357,7 +357,7 @@ protected void setValue(T value) {
 
 LiveData 的 postValue 方法其实就是把操作 post 到主线程，**最后调用的还是 setValue 方法**，注意 setValue 必须是在主线程调用。
 
-并且可以看到** setValue 方法调用了 dispatchingValue 方法，并传入了 null ，这个时候的流程则会通知 active 的mObservers**。
+并且可以看到 **setValue 方法调用了 dispatchingValue 方法，并传入了 null ，这个时候的流程则会通知 active 的mObservers**。
 
 到这里之前的剩下的所有疑问也都可以解答了。
 
@@ -370,17 +370,20 @@ LiveData 的两个流程都会走到 **dispatchingValue 处理分发通知逻�
 
 <a name="b932eca5"></a>
 #### 3.1 LiveData 类图
-再看一遍类图，回顾一下：<br />![image.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1554969110238-9a1135e2-8298-4e08-85f9-c6e7153772c8.png#align=left&display=inline&height=359&name=image.png&originHeight=718&originWidth=817&size=285251&status=done&width=409)<br />(图2.LiveData 类图)
+再看一遍类图，回顾一下：![image.png](http://ww4.sinaimg.cn/large/006tNc79ly1g5gsxm7n62j30mp0jyjyu.jpg)<br />(图2.LiveData 类图)
 <a name="c979bac4"></a>
+
 #### 3.2 LiveData 流程图
 
 Lifecycle 改变触发流程：
 
-![livedata-lifecycle-changes.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1555053650504-ffd5ea7a-4f49-4be4-89ad-760f065fe1cc.png#align=left&display=inline&height=317&name=livedata-lifecycle-changes.png&originHeight=486&originWidth=1143&size=62726&status=done&width=746)<br />(图3.Lifecycle 改变触发流程图)
+![livedata-lifecycle-changes.png](http://ww1.sinaimg.cn/large/006tNc79ly1g5gsxy4wwyj30vr0di75p.jpg)<br />
+
+(图3.Lifecycle 改变触发流程图)
 
 Lifecycle postValue/setValue 触发流程：
 
-![livedata-postvalue.png](https://cdn.nlark.com/yuque/0/2019/png/138547/1555053700049-ad572729-ed17-4fb0-990e-382e543e5485.png#align=left&display=inline&height=317&name=livedata-postvalue.png&originHeight=486&originWidth=1143&size=56008&status=done&width=746)<br />(图4.setValue 改变触发流程图)
+![livedata-postvalue.png](http://ww2.sinaimg.cn/large/006tNc79ly1g5gsy4l08pj30vr0dimye.jpg)<br />(图4.setValue 改变触发流程图)
 
 
 <a name="6becaec8"></a>
@@ -394,11 +397,13 @@ Lifecycle postValue/setValue 触发流程：
 LiveData 被订阅时，如果之前已经更改过数据，并且当前 owner 为 active 的状态，activeStateChanged() 会被调用，也即会立马通知到 Observer ，这样其实就类似 EventBus 的 sticky event 的功能，需要注意的是，很多时候我们并不需要该功能。具体可以看一下【7.6】的处理。
 
 <a name="873f2dd4"></a>
+
 #### 4.2 AlwaysActiveObserver 
 
 默认情况下，LiveData 会跟 LicycleOwner 绑定，只在 active 状态下更新，如若想要**不管在什么状态下都能接收到数据的更改通知**的话，怎么办？这时候需要使用 **AlwaysActiveObserver** ，改调用 observe 方法为调用 LiveData.observeForever(Observer) 方法即可。
 
 <a name="4cea7239"></a>
+
 #### 4.3 MediatorLiveData
 
 LiveData 还有一个子类是 MediatorLiveData，它允许我们合并多个 LiveData，任何一个 LiveData 有更新就会发送通知。比如我们的数据来源有两个，一个数据库一个网络，这时候我们会有两个 DataSource，也就是两个 LiveData，这个时候我们可以使用 MediatorLiveData 来 merge 这两个 LiveData。

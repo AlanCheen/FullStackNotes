@@ -1,9 +1,5 @@
 # 【AAC 系列四】深入理解架构组件：ViewModel
 
-![benjamin-suter-1589900-unsplash.jpg](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1559119915861-ab7f285f-c15b-49be-83b0-ad5a5e8fa3e6.jpeg)
-
-<a name="2a1d9fae"></a>
-
 [TOC]
 
 ### 0. 前言
@@ -286,7 +282,7 @@ public static ViewModelStore of(@NonNull Fragment fragment) {
 
 
 
-这里又多出来了几个类 ViewModelStoreOwner、HolderFragment ，让我们来追查一下。
+这里又多出来了几个类 `ViewModelStoreOwner`、`HolderFragment` ，让我们来追查一下。
 
 
 
@@ -478,7 +474,7 @@ public HolderFragment() {
 
 
 
-到这里 ViewModel 实现的原理就清晰了：**通过注入一个retainInstance 为 true 的 HolderFragment ，利用 Fragment 的特性来保证在 Activity 配置改变后依然能够存活一下，并且保证了 HolderFragment 内部的 ViewModelStore 的存活，最终保证了 ViewModelStore 内部储存的 ViewModel 缓存存活，从而实现了 ViewModel 的生命周期这个特点功能**。(又是 Fragment！)
+到这里 ViewModel 实现的原理就清晰了：**通过注入一个 retainInstance 为 true 的 HolderFragment ，利用 Fragment 的特性来保证在 Activity 配置改变后依然能够存活一下，并且保证了 HolderFragment 内部的 ViewModelStore 的存活，最终保证了 ViewModelStore 内部储存的 ViewModel 缓存存活，从而实现了 ViewModel 的生命周期这个特点功能**。(又是 Fragment！)
 
 
 

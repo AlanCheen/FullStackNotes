@@ -1,9 +1,5 @@
 # Handler
 
-![](https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1550556294610-9fb2a826-1ad8-4137-9560-64a419b96110.jpeg#align=left&display=inline&height=473&originHeight=811&originWidth=1280&size=0&status=done&width=746)
-
-<a name="2a1d9fae"></a>
-
 [TOC]
 
 ## 0. 前言
