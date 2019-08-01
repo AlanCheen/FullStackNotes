@@ -104,3 +104,33 @@ topGroup.setVisibility(View.VISIBLE);
 
 ### Placeholder
 
+
+
+
+
+### 实战
+
+
+
+#### 子 View 设置最大高度
+
+
+
+约束布局里 maxHeight 是不起作用的，需要做如下设置：
+
+```xml
+android:layout_height="wrap_content"
+app:layout_constraintHeight_max="300dp"
+app:layout_constrainedHeight="true"
+```
+
+
+
+
+
+
+
+
+
+
+

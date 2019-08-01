@@ -1,5 +1,7 @@
 # RecyclerView
 
+[TOC]
+
 
 
 
@@ -16,7 +18,7 @@
 
 ### 实战
 
-#### 保存滚动的位置
+#### 切换数据源后依然保存滚动的位置
 
 有时候 RecyclerView 切换数据源的时候会导致原来的滚动位置丢之，可能会自动滚动到顶部。
 
@@ -33,5 +35,26 @@ recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
 
 
 
+#### 解决ViewHolder 中有 ScrollView 时 ScrollView 无法滚动的问题
 
 
+
+```java
+//recyclerview
+recyclerView.setNestedScrollingEnabled(false);
+
+//scrollview
+scrollView.setOnTouchListener(new OnTouchListener() {
+    @Override
+    public boolean onTouch(final View v, final MotionEvent event) {
+        v.getParent().requestDisallowInterceptTouchEvent(true);
+        return false;
+    }
+});
+```
+
+
+
+#### ScrollView 中 RecyclerView 一次性加载所有 Item 的问题
+
+无解？尽量避免这种问题，选择用一个或多个 RecyclerView 来实现。
