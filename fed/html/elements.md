@@ -32,16 +32,31 @@ HTML 中有两种重要的元素类别，块级元素和内联元素。
 
 `<img src="路径" alt="描述" width="56" height="56">`
 
-
+还有 map、area 标签定义地图。
 
 属性：
 
-- `src`，图片路径
+- `src`，“source”，图片路径，可以是：
   - 绝对路径
   - 相对路径
 - `alt`，描述，当图片无法展示的时候会展示 alt 里的文本内容；
-- `width`，
-- `height`，
+- `width`，宽度
+- `height`，高度
+- `align`，设置图像对齐方式
+  - bottom，底部对齐，默认方式；
+  - middle，居中对齐，
+  - top，顶部对齐
+- `border`，例子 20
+
+
+
+```html
+给网页添加背景图，如果图片小于背景则重复图片
+<body background="/i/eg_background.jpg">
+
+```
+
+
 
 
 
@@ -132,7 +147,7 @@ HTML 中有两种重要的元素类别，块级元素和内联元素。
 
 ### 链接
 
-a 标签，“anchor”的缩写，可以链接一切
+a 标签，定义锚，“anchor”的缩写，可以链接一切。
 
 
 
@@ -140,14 +155,50 @@ a 标签，“anchor”的缩写，可以链接一切
 
 1. `href`（**h**ypertext **ref**erence），指定超文本引用，可以是网页链接；
 2. `title`，鼠标移动到链接会展示的标题；
+3. `target`，指定被`链接的文档在何处显示`，默认是在当前页面展示；
+   1. `target="_blank"`，在新窗口打开；
+   2. `target="_top"`，
+4. `name`，规定锚 anchor 的名称，可以用来创建 HTML 书签，可以用来做类似回到顶部的效果，也可以用来做导航，具体用法是`<a name="foo">`和`<a href="#foo">`；
 
 
 
 简单的例子如下：
 
 ```html
- <a href="http://yifeiyuan.me">这是个链接</a>
+ <a href="http://yifeiyuan.me">这是个指向外部页面的链接</a>
 ```
 
 
+
+```html
+<a href="./xx.html">一个指向内部页面的链接</a>
+```
+
+
+
+用图片来做链接
+
+```html
+<p>
+  <a href="http://yifeiyuan.me">这是个用图片做的链接<img src="https://cdn.nlark.com/yuque/0/2019/jpeg/138547/1557131045935-3b37e4fb-658b-4d27-956b-eff115f51352.jpeg" width="100" height="100"></a>
+</p>
+```
+
+
+
+锚效果：
+
+#### 回到顶部
+
+```html
+<a name="top">
+
+<p><a href="#top">点击我回到顶部</a></p>
+```
+
+或者跳转到其他页面的某个章节：
+
+```html
+<a href="xxxxx.html#top"></a>
+```
 
