@@ -21,7 +21,7 @@
 
 注： dx 工具可以用来生成 dex 文件
 
-
+`dalvikvm -showversion` 查看 dvm 版本 
 
 
 
