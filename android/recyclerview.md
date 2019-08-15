@@ -58,3 +58,38 @@ scrollView.setOnTouchListener(new OnTouchListener() {
 #### ScrollView 中 RecyclerView 一次性加载所有 Item 的问题
 
 无解？尽量避免这种问题，选择用一个或多个 RecyclerView 来实现。
+
+
+
+
+
+### 注意点
+
+
+
+#### onBindViewHolder 里的 position 问题
+
+
+
+在 onBind 方法里用到 position 类似这样：
+
+```java
+callback.onItemClicked(position);
+```
+
+Lint 扫描的时候提示：
+
+> Do not treat position as fixed; only use immediately and call holder.getAdapterPosition() to look it up later less... 
+>  RecyclerView will not call onBindViewHolder again when the position of the item changes in the data set unless the item itself is invalidated or the new position cannot be determined.  For this reason, you should only use the position parameter while acquiring the related data item inside this method, and should not keep a copy of it.  If you need the position of an item later on (e.g. in a click listener), use getAdapterPosition() which will have the updated adapter position.
+>  Issue id: RecyclerView
+
+需要改成这样：
+
+```java
+callback.onItemClicked(viewHolder.getAdapterPosition());
+```
+
+
+
+因为 position 可能会变，所以要用 position 一定要每次都用`viewHolder.getAdapterPosition()`来获取。
+
