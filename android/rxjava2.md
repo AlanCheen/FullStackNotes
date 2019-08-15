@@ -1,8 +1,6 @@
 # RxJava 2.x
 
-
-
-
+[TOC]
 
 ### 基础的类
 
@@ -41,6 +39,42 @@ Disposable disposable = Single.create(new SingleOnSubscribe<String>() {
   - onError(@NonNull Throwable t)
 
 - 
+
+
+
+
+
+### RxJava2 取消订阅——Disposable
+
+RxJava2 修改了概念，改成了 disposable ， dispose 表示将某事物处理掉，可以按以往取消订阅的思路理解。
+
+Disposable 在 subscribe 方法里才返回，跟 RxJava1 也不一样，需要注意。
+
+
+
+- `Disposable`，接口，单个订阅的	
+  - `dispose()`
+  - `isDisposed()`
+
+- `CompositeDisposable`，实现 了Disposable ，可以存放多个 Disposable
+  - `add(Disposable)`
+  - `addAll(...)`
+  - ...
+- `DisposableObserver`
+
+
+
+```java
+private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+Observable.subscribe(xxxx{
+	onSubscribe(final Disposable d){
+	compositeDisposable.add(d);
+}
+})
+  
+compositeDisposable.dispose();
+```
 
 
 
