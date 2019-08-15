@@ -51,5 +51,5 @@ onPreExecute —> doInBackground —> onProgressUpdate —> onPostExecute
 3. AsyncTask 中只有 `doingBackground`方法是在异步线程执行，其他的都是在主线程；
 4. `AsyncTask.cancel(mayInterruptIfRunning)` 方法调用后并不能直接立即取消，而只是设置了个标记位而已，需要自己配合`isCancelled()`方法使用；
 5. 取消后的 AsyncTask 会回调 `onCancelled(Object)`而不是 `onPostExecute(Object)`；
-6. 推荐配合线程池使用，因为*某些版本的 AsyncTask 任务是串行的*，一个一个按排序执行，并不支持并发；
-7. AsyncTask 需要是静态内部类型，因为有内存泄露的风险；
+6. `推荐配合线程池使用`，因为*某些版本的 AsyncTask 任务是串行的*，一个一个按排序执行，并不支持并发；
+7. AsyncTask 需要是静态内部类型，因为有内存泄露的风险，不要保存 context；
