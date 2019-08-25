@@ -1,10 +1,10 @@
-# 《Head First Java 》
-
-[TOC]
+# 《Head First Java 》笔记
 
 > 本文 GitHub 地址：https://github.com/AlanCheen/FullStackNotes
 >
-> 作者：程序亦非猿
+> 作者公众号：`程序亦非猿`，关注后回复「Head First Java」即可获得 PDF 版本笔记
+
+[TOC]
 
 ### 1 基本概念
 

@@ -1,8 +1,9 @@
-# 《Java 核心技术 卷 1 基础知识 第十版》
+# 《Java 核心技术 卷 1 基础知识 第十版》笔记
 
 > 本文 GitHub 地址：https://github.com/AlanCheen/FullStackNotes
 >
-> 作者：程序亦非猿，公众号：程序亦非猿
+> 作者公众号：程序亦非猿，关注后回复「Java核心技术」即可获得 PDF 版本笔记
+>
 
 ---
 
@@ -10,23 +11,37 @@
 
 
 
-基于 Java SE 8 更新。
-
-Core Java Volume 1-Fundamentals
+Core Java Volume 1-Fundamentals，基于 Java SE 8 更新。
 
 
 
-第六、八、九、十四章比较重要。
+一本值得每个学 Java 的同学学习的书。
 
 
 
-强类型语言，必须为每一个变量声明一种类型。
+该笔记是「`程序亦非猿`」所做，并且只是按个人的侧重点记录的`笔记`（感觉第四、六、八、九、十四章比较重要），所以内容相比原书会少很多，想看更多请购买原书。
+
+
+
+### 第1 章 Java 程序设计概述
+
+
+
+- 简单性
+- 面向对象
+- 分布式
+- 健壮性
+- 安全性
+- 体系结构中立
+- 可移植性
+- 解释型
+- 高性能
+- 多线程
+- 动态性
 
 
 
 ### 第 3 章 Java 的基本程序设计结构
-
-
 
 
 
@@ -55,7 +70,7 @@ Core Java Volume 1-Fundamentals
 
 #### 3.6 字符串
 
-字符串 String，不可变，
+字符串 String，不可变。
 
 
 
@@ -1167,11 +1182,4 @@ CyclicBarrier 类实现了一个集结点(rendezvous) 称为障栅(barrier)。�
 
 ### 联系我
 
-![公众号：程序亦非猿](http://ww1.sinaimg.cn/large/98900c07ly1g0joizy4erj21fk0lgq92.jpg)
-
-
-
-
-
-
-
+<img src="http://ww1.sinaimg.cn/large/98900c07ly1g69mj0q0z0j20v60wc41n.jpg" style="zoom:25%"/>
