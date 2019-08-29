@@ -37,3 +37,46 @@ alias typora="open -a typora"
 
 
 
+### tree
+
+
+
+tree 是一个工具，可以让我们在终端里输出一个树状的目录结构。
+
+
+
+用 brew 就可以安装了
+
+```shell
+brew install tree
+```
+
+
+
+然后在目录下执行`tree -N`就行。例如：
+
+```shell
+➜  tools git:(master) ✗ tree -N
+.
+├── README.md
+├── android-studio.md
+├── sublime-text.md
+└── webstorm.md
+
+0 directories, 4 files
+```
+
+
+
+tree 的命令参数： 
+
+- `--help`，可以查看参数
+- `-N`，直接列出文件和目录名称，包括控制字符，中文不会乱码。
+- `-L`，指定目录层级，例如`tree -L 1` 只会输出当前目录的一级子目录
+- `-d`，只打印目录
+- `-f`，打印全路径
+- `-a`，打印全部文件和目录
+
+
+
+另外还能指定如何排序以及过滤条件，可以`--help`学习。
