@@ -6,7 +6,17 @@
 
 
 
+不过 Stack 的作者更推荐 ArrayDeque 而不是 Stack，实际上也确实很少看到 Stack 的使用。
+
+
+
 ### Java Stack<E> 
+
+```java
+public class Stack<E> extends Vector<E> 
+```
+
+
 
 在 Java 里有 Stack<E>，还有 Deque<E>等实现，以 Stack<E> 为例。
 
