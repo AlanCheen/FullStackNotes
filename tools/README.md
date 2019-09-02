@@ -2,11 +2,13 @@
 
 
 
-
-
-
+[TOC]
 
 ### Mac  App
+
+
+
+#### Fork
 
 Fork，一款 git client
 
@@ -14,9 +16,13 @@ https://git-fork.com/
 
 
 
+#### iPic
+
 iPic &iPic Mover
 
 https://toolinbox.net/iPic/
+
+
 
 #### Typora
 
@@ -29,15 +35,9 @@ alias typora="open -a typora"
 ```
  然后就可以在终端使用`typora foo.md` 来打开 md 文件了。
 
-### Chrome 
 
 
-
-微博图床：https://github.com/Suxiaogang/WeiboPicBed
-
-
-
-### tree
+#### tree
 
 
 
@@ -80,3 +80,16 @@ tree 的命令参数：
 
 
 另外还能指定如何排序以及过滤条件，可以`--help`学习。
+
+
+
+
+
+### Chrome 
+
+
+
+#### 微博图床
+
+微博图床：https://github.com/Suxiaogang/WeiboPicBed
+
