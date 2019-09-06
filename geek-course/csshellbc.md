@@ -2,7 +2,7 @@
 
 > 本文 GitHub 地址：https://github.com/AlanCheen/FullStackNotes
 >
-> 作者公众号：程序亦非猿
+> 作者公众号：`程序亦非猿`，关注后回复「`初识Shell编程`」即可获得 PDF 版本笔记
 
 
 
@@ -68,7 +68,7 @@ bash 有些命令没有，所以需要加申明脚本用什么解释：
 - `bash xxx.sh`，开启新的进程运行，不需要有可执行权限，
 - `./xxx.sh`  开启新的进程运行，`需要有可执行权限`，不然会报错`permission denied:xxx.sh`
 - `source xxx.sh` ，在当前进程执行，
-- `. xxx.sh` ，是`source`的简写方式，也是在当前进程，
+- `. xxx.sh` ，`.`是`source`的简写方式，也是在当前进程，
 
 
 
@@ -147,7 +147,7 @@ cat
 1. shell 脚本的变量是弱类型，不区分类型
 2. 变量名=变量值，a=123，`等号边上不能出现空格`，不然 shell 脚本会认为是命令
 3. 使用 let 为变量赋值，let  a=10+20
-4. 将命令赋值给变量，l=ls
+4. `将命令赋值给变量`，l=ls
 5. `将命令结果赋值给变量`，使用`$()`或者``
    1. letc=$(ls -l /etc)
    2. letc=\`ls -l /etc\`
@@ -424,7 +424,7 @@ echo "hello Fitz"
 
 
 
-### 联系我
+### 关注我
 
 <img src="http://ww1.sinaimg.cn/large/98900c07ly1g69mj0q0z0j20v60wc41n.jpg" style="zoom:25%"/>
 
