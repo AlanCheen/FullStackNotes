@@ -4,9 +4,13 @@
 
 
 
-### 什么是 Jetpack
+Android Jetpack is here to accelerate Android development by facilitating a modern app architecture, eliminating boilerplate code, simplifying complex tasks, and providing robust backwards compatibility.
 
 
+
+### 什么是 Jetpack？
+
+2017 年宣布
 
 Jetpack is a set of libraries and guidance of modern Android development.
 
@@ -26,6 +30,28 @@ Jetpack 分为四个类目：
 4. Foundation
 
 
+
+每个类目都是可以独立集成的，当然也可以一起使用。
+
+
+
+每个库都旨在解决某个开发中的痛点(pain points)。例如：
+
+- Lifeycle Managerment
+- Data Persistence
+
+
+
+Jetpack 优势：
+
+- Modern App Architecture
+- Eliminate boilerplate code
+- Simplifying complex tasks
+- Robust backwards compatibility
+
+
+
+help your Android projects take flight. 起飞 哈哈
 
 
 
@@ -63,6 +89,10 @@ Room Benefits
 #### WorkManager
 
 WorkManager is a feature-rich API that compatibly schedules deferrable backgound work.
+
+
+
+Tasks can execute in order, in parallel, or in even more complex configurations.
 
 
 
@@ -139,16 +169,22 @@ Paging Benefits
 Navigations Benefits
 
 - Handles fragment transactions
-
 - Implements proper up and back
-
 - Deep linking support
-
 - Easy animated transitions
-
 - Common navigation pattern support
 
-  
+
+
+支持：
+
+- Deep linking
+- Automated Fragment Translations
+- Overflow Menu
+- Navigation Drawer
+- Bottom navigation
+
+
 
 Destinations, specific screen you can go to.
 
@@ -163,8 +199,6 @@ Destinations, specific screen you can go to.
 
 
 this is just scratching the surface of the proverbial iceberg that is the architecture components in Jetpack.
-
-
 
 
 
