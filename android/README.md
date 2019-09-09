@@ -30,3 +30,13 @@
 - - 
 - - 
 
+
+
+### 资料
+
+[Improving App Performance with Benchmarking (Google I/O'19)](https://www.youtube.com/watch?v=ZffMCJdA5Qc&feature=youtu.be)
+
+[Build a Modular Android App Architecture (Google I/O'19)](https://www.youtube.com/watch?v=PZBg5DIzNww&feature=youtu.be)
+
+https://www.youtube.com/watch?v=Qxj2eBmXLHg&feature=youtu.be
+

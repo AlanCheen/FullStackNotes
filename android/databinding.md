@@ -12,6 +12,11 @@ DataBinding 是一个可以允许使用声明式（declarative）让我们在 la
 
 
 
+- Declarative UIs inside XML
+- Binding the gap between code and XML
+
+
+
 DataBinding 的优势：
 
 - 在 layout 里做绑定可以省去很多代码，提升可维护性；
