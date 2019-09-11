@@ -173,6 +173,22 @@ flutter run
 
 执行上面三个命令就可以创建并部署到模拟器。
 
+创建的工程目录：
+```
+➜  helloflutter ll
+total 32
+-rw-r--r--   1 mingjue  staff   542  9 11 15:48 README.md
+drwxr-xr-x  12 mingjue  staff   384  9 11 15:58 android
+drwxr-xr-x   9 mingjue  staff   288  9 11 16:00 build
+-rw-r--r--   1 mingjue  staff   896  9 11 15:48 helloflutter.iml
+drwxr-xr-x   8 mingjue  staff   256  9 11 15:49 ios
+drwxr-xr-x   3 mingjue  staff    96  9 11 15:48 lib
+-rw-r--r--   1 mingjue  staff  3279  9 11 15:48 pubspec.lock
+-rw-r--r--   1 mingjue  staff  2664  9 11 15:48 pubspec.yaml
+drwxr-xr-x   3 mingjue  staff    96  9 11 15:48 test
+```
+
+代码放在 lib/ 下面。
 
 
 运行日志：
