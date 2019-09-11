@@ -21,11 +21,13 @@
 
 运行 flutter doctor:
 
+打开 Command Palette 输入 doctor , 选择 Run Flutter Doctor :
+
 ![image-20190911161503414](https://tva1.sinaimg.cn/large/006y8mN6ly1g6vncnujuzj30ht02sq3c.jpg)
 
 
 
-遇到个问题：
+我遇到个问题：
 
 ![image-20190911161820463](https://tva1.sinaimg.cn/large/006y8mN6ly1g6vng37b72j30ck033myc.jpg)
 
@@ -40,9 +42,13 @@
 于是我尝试把 flutter 配置到 bash_profile ，然后发现就行了，我真 TM 是个机智鬼。
 
 ```shell
-vim .bash_profile #
+vim .bash_profile 
 source .bash_profile
 ```
+
+
+
+再执行上面的操作，运行的结果跟在终端运行 flutter doctor 是一样的。
 
 
 
@@ -55,6 +61,10 @@ source .bash_profile
 
 
 到此 VS 的 Flutter 基本开发环境算是配置好了。
+
+
+
+试着修改了下 lib/main.dart 文件，然后在终端输入 r ，可以看到可以立马更新到模拟器上，很是快捷。
 
 
 

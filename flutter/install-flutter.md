@@ -4,14 +4,13 @@
 
 
 
-文基于 MacOS。
+文基于 MacOS，Flutter v1.9.1+hotfix.2。
 
 
 
 ### 下载 Flutter SDK 并配置环境变量
 
 去 https://flutter.cn/docs/development/tools/sdk/releases?tab=macos 下载最近的 sdk，放到某个目录。
-
 
 
 然后解压，并配置环境变量。
@@ -151,8 +150,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 
 
 
-如果一起下载过 Xcode 应该问题不大。
-
+如果以前下载过 Xcode 用过终端，那么应该没问题。
 
 
 然后启动一个 iPhone5S 之后版本的模拟器，我选了 XS。
@@ -160,7 +158,6 @@ Doctor summary (to see all details, run flutter doctor -v):
 ```shell
 open -a Simulator
 ```
-
 
 
 创建一个 Flutter 工程，并部署到模拟器。
@@ -188,7 +185,7 @@ drwxr-xr-x   3 mingjue  staff    96  9 11 15:48 lib
 drwxr-xr-x   3 mingjue  staff    96  9 11 15:48 test
 ```
 
-代码放在 lib/ 下面。
+注：代码放在 lib/ 下面。
 
 
 运行日志：
@@ -282,6 +279,11 @@ press "q".
 
 处于技术预览期。
 
+
+### 感受
+
+Flutter 在 iOS 模拟器上跑非常快，hotreload 速度杠杠的，在 Android 上冷启动有点慢。
+整体配置上如果网络顺畅的话还是比较顺利，等后续学习了再多体验体验。
 
 
 ### 资料
