@@ -4,6 +4,16 @@
 
 
 
+Android 开发先看看这个：
+
+https://flutter.cn/docs/get-started/flutter-for/android-devs
+
+
+
+了解基本概念。
+
+
+
 
 
 ### Widgets

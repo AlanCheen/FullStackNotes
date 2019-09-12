@@ -2,8 +2,6 @@
 
 [TOC]
 
-
-
 文基于 MacOS，Flutter v1.9.1+hotfix.2。
 
 
@@ -278,6 +276,12 @@ press "q".
 
 
 处于技术预览期。
+
+update : https://flutter.cn/docs/get-started/web
+
+改天试试
+
+
 
 
 ### 感受
