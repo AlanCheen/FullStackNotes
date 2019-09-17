@@ -2,12 +2,6 @@
 
 
 
-
-
-
-
-
-
 State*less* widgets 是不可变的，这意味着它们的属性不能改变 —— 所有的值都是 final。
 
 State*ful* widgets 持有的状态可能在 widget 生命周期中发生变化，实现一个 stateful widget 至少需要两个类： 1）一个 StatefulWidget 类；2）一个 State 类，StatefulWidget 类本身是不变的，但是 State 类在 widget 生命周期中始终存在。
@@ -50,7 +44,7 @@ class FooWidgetState extends State<FooWidget> {
 
 YouTuBe 频道：https://www.youtube.com/flutterdev
 
-
+widgets 介绍：https://flutter.cn/docs/development/ui/widgets-intro
 
 https://github.com/flutter/flutter/wiki/Release-Notes-Flutter-1.5.4
 

@@ -2,9 +2,7 @@
 
 [TOC]
 
-
-
-Flutter 目前支持 Android Studio/Intellij/Visual Studio Code/终端&文本编辑器 多种方式来编写， AS 我已经非常熟悉了，为了挑战下自己，学一下 VS Code，指不定以后写前端还用得着，所以综合考虑下我选择了使用 VS Code 来学习 Flutter 开发。
+Flutter 目前支持 Android Studio/Intellij/Visual Studio Code/终端&文本编辑器 四种方式来编写， AS 我已经非常熟悉了，为了挑战下自己（no zuo no die），学一下 VS Code，指不定以后写前端还用得着，所以综合考虑下我选择了使用 VS Code 来学习 Flutter 开发。
 
 
 
@@ -152,9 +150,11 @@ source .bash_profile
 
 
 
-至此，VS Code 开发 Flutter 初体验完毕。
+### 总结
 
+这次体验只是尝试在 VS Code 上安装插件，新建 Flutter 项目，以及 Run 其 Hello Flutter 工程，还算是方便快捷，但是还是感觉 Android Studio 更加顺手 -0-。
 
+后续如果有机会再多体验了再来分享，请保持关注。
 
 ### 资料
 

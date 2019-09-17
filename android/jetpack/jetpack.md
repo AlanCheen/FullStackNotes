@@ -122,11 +122,28 @@ ViewModel 是一个很好的稳定的地方用来存放所有的 UI 数据。通
 
 #### LiveData
 
+by Jose Alcerreca
+
 LiveData is built for easy communication between the UI and deeper layers of your app's architecture.
 
 LiveData is an observable data holder. It is lifecycle aware.
 
-假如 Activity 没展示，那么 LiveData 是不会触发更新的，如果 Activity 被销毁，那么订阅关系也会被自动解除。所以使用LiveData 就不会出现更新离屏的（offscreen）或已经销毁的页面
+
+
+LiveData is a simple observable data holder that is aware of the lifecycle of the observers. It was designed to avoid memory leaks and null pointer exceptions between an activity or fragment and a ViewModel. 
+
+
+
+假如 Activity 没展示，那么 LiveData 是不会触发更新的，如果 Activity 被销毁，那么订阅关系也会被自动解除。所以使用LiveData 就不会出现更新离屏的（offscreen）或已经销毁的页面。
+
+
+
+特征：
+
+- Simple
+- Lifecycle-aware
+- Observable
+- Data Holder
 
 
 
@@ -141,6 +158,10 @@ Lifecycle Benefits
 - Querying and observe UI Lifecycles state
 
 
+
+[Fun with LiveData (Android Dev Summit '18)](https://www.youtube.com/watch?v=2rO4r-JOQtA)
+
+[Android Jetpack: LiveData](https://www.youtube.com/watch?v=OMcDk2_4LSk)
 
 #### Paging
 
