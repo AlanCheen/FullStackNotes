@@ -22,14 +22,6 @@ startActivity(Intent(MainActivity@this, SecondActivity::class.java))
 
 
 
-
-
-
-
-
-
-
-
 ### 学习资料
 
 
