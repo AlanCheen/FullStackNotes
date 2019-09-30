@@ -85,8 +85,8 @@ Mac 上可以执行`ll /bin/*sh`查看一下：
 
 
 
-1. `sh`：Bourne shell，由 Bell Labs 开发，路径为`/bin/sh`；
-2. `bash`：是 sh 的替代品，兼容性更好，路径为`/bin/bash`；
+1. `sh`：Bourne Shell，由 Bell Labs 开发，路径为`/bin/sh`；
+2. `bash`：Bourne Again Shell，是 sh 的替代品，兼容性更好，路径为`/bin/bash`；
 
 
 
@@ -147,6 +147,10 @@ echo "hello ${name}"
 
 name="Fitz"
 echo ${name}
+
+readonly name #只读变量，不能赋值
+
+unset name #删除变量
 ```
 
 
@@ -154,6 +158,35 @@ echo ${name}
 定义变量的时候**变量名跟等号之间不能有空格**;一个变量可以**被多次赋值**。
 
 使用变量的时候用美元符号引用，大括号非必须，但是推荐加上，可以帮助解释器识别变量的边界，在某些场景下必须需要。
+
+
+
+1. `readonly` 定义只读变量；
+2. `unset` 删除变量；
+
+
+
+变量的 scope：
+
+1. 局部变量：
+2. 环境变量：PATH 里的变量，用 export 可以定义；
+3. shell 变量：
+
+
+
+### 数组
+
+用**括号**来表示数组，数组元素用**"空格"**符号分隔开。
+
+```shell
+array=(value1 value2 ... n)
+#赋值
+array[0]=value
+#读取某个元素
+${array[index]}
+#获取所有元素
+${array[@]}
+```
 
 
 
@@ -206,13 +239,25 @@ Hello,程序亦非猿,"大风起兮云飞扬"!
 获取字符串长度，`${#string}`，例如：
 
 ```shell
+#获取字符串的长度
 str="abc"
-echo "${str} 的长度为 ${#str}"
-
-abc 的长度为 3
+echo "${str} 的长度为 ${#str}" #abc 的长度为 3
 ```
 
 
+
+获取子字符串，`${string:from:to}`，index 也是从 0 开始的，例如：
+
+```shell
+#提取字符串
+str="abcdef"
+echo "${str:1:2}" #bc
+echo "${str:3}" #def
+```
+
+
+
+更多：http://tldp.org/LDP/abs/html/string-manipulation.html
 
 
 
@@ -220,13 +265,81 @@ abc 的长度为 3
 
 
 
-### 注释
-
-
-
 ### 流程判断 控制语句
 
 if else , while ...
+
+
+
+#### if else
+
+
+
+##### if
+
+```shell
+if [[ condition ]]; then
+			command1
+			...
+			commandn
+fi
+```
+
+
+
+注意条件写在`[[ ]];` 内部，并且两边都有空格，然后以`;`结束，并且跟`then`  之间有空格，最后`fi`结束。
+
+
+
+例如：
+
+```shell
+#if
+num=3
+if [[ num>1 ]]; then 
+	echo "${num} 大于 1"
+fi
+```
+
+
+
+
+
+##### if else
+
+```shell
+if condition
+then 
+		 command1
+		 ...
+		 commandN
+else 
+			command
+fi
+```
+
+
+
+
+
+##### if else if else
+
+
+
+```shell
+if condition
+then
+	command
+elif condition
+	command
+else
+	command
+fi
+```
+
+
+
+
 
 
 
@@ -238,7 +351,7 @@ if else , while ...
 
 
 
-## 常用命令
+## 常用 linux 命令
 
 ps 
 
@@ -261,3 +374,5 @@ https://www.runoob.com/linux/linux-shell.html
 https://github.com/qinjx/30min_guides/blob/master/shell.md
 
 https://bash.cyberciti.biz/guide/Main_Page
+
+https://github.com/AlanCheen/head-first-shell
