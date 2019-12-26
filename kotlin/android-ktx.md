@@ -8,3 +8,8 @@ Android KTX 是一组 Kotlin 扩展程序，属于 Android Jetpack 系列。它�
 
 
 
+handler.postDelay(40){
+	
+}
+
+
