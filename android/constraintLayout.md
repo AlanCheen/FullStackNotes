@@ -124,7 +124,7 @@ topGroup.setVisibility(View.VISIBLE);
 
 
 
-![image-20190827165620400](/Users/mingjue/Library/Application Support/typora-user-images/image-20190827165620400.png)
+![image-20190827165620400](https://tva1.sinaimg.cn/large/006tNbRwly1gadxi4qkhsj30nr078gm7.jpg)
 
 
 

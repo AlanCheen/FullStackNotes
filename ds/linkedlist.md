@@ -127,7 +127,8 @@ Node{
 
 
 
-块状链表通过使用可变的顺序表的长度和特殊的插入、删除方式，可以在达到![O({\sqrt  n})](https://wikimedia.org/api/rest_v1/media/math/render/svg/f5526ab1252c0f682bbe07c0ad67c0f29de5522b)的复杂度。块状链表另一个特点是相对于普通链表来说节省内存，因为不用保存指向每一个数据节点的指针。
+块状链表通过使用可变的顺序表的长度和特殊的插入、删除方式，可以在达到![O({\sqrt  n})](https://wikimedia.org/api/rest_v1/media/math/render/svg/f5526ab1252c0f682bbe07c0ad67c0f29de5522b)
+的复杂度。块状链表另一个特点是相对于普通链表来说节省内存，因为不用保存指向每一个数据节点的指针。
 
 
 

@@ -1,6 +1,7 @@
 # WebStorm
 
 
+> 最后同步时间，2019-12-29
 
 
 
@@ -16,7 +17,7 @@
 
 
 
-![image-20190822115321133](/Users/mingjue/Library/Application Support/typora-user-images/image-20190822115321133.png)
+![image-20190822115321133](https://tva1.sinaimg.cn/large/006tNbRwly1gadvidnhnfj309c0g80tb.jpg)
 
 并且 WebStorm 提示
 
@@ -30,7 +31,7 @@
 
 
 
-![image-20190822114852207](/Users/mingjue/Library/Application Support/typora-user-images/image-20190822114852207.png)
+![image-20190822114852207](https://tva1.sinaimg.cn/large/006tNbRwly1gadviiru0cj310i0u0n8b.jpg)
 
 
 
