@@ -316,13 +316,7 @@ dispatchTouchEvent（）方法是用于处理事件分发的，若事件能够�
 
 【答案说明】
 
-在Android中，出于安全性考虑，Android系统中的进程之间不能共享内存，每个应用都执行在自己的进程中，无法直接调用其他应用的资源。为了使应用程序之间能够彼此通信，Android提供了IPC（Inter Process Communication，进程间通信）的一种独特实现：AIDL（Android Interface Definition Language，Android接口定义语言）。
-
- 
-
- 
-
-经典面试8：简述你对AIDL的理解。
+ 在Android中，出于安全性考虑，Android系统中的进程之间不能共享内存，每个应用都执行在自己的进程中，无法直接调用其他应用的资源。为了使应用程序之间能够彼此通信，Android提供了IPC（Inter Process Communication，进程间通信）的一种独特实现：AIDL（AndroidInterface Definition Language，Android接口定义语言）。AIDL是一种Android内部进程间通信接口的描述语言，通过它可以定义进程间的通信接口。AIDL的语法与Java的接口语法类似，在编写AIDL时需要注意以下几项：（1）接口名与AIDL文件名必须相同。（2）客户端和服务端的AIDL接口文件所在的包名必须相同。（3）接口和方法前不能加访问权限修饰符，如public、private、protected等，也不能用final、static。（4）AIDL默认支持的类型包括Java基本类型（int、long、boolean、String等），以及List、Map、CharSequence，使用这些类型时不需要用import声明。（5）对于List和Map而言，其泛型元素的类型必须是AIDL支持的类型。（6）如果使用自定义类型作为参数或返回值，则自定义类型必须实现Parcelable接口。（7）在AIDL文件中所有非Java基本类型参数必须加上in、out、inout标记，用于指明参数是输入参数、输出参数还是输入输出参数，Java原始类型默认的标记为in，不能为其他标记。（8）自定义类型和AIDL即使在同一个包下，生成的其他接口类型在AIDL描述文件中也需要显示import。（9）需要一个
 
  
 
