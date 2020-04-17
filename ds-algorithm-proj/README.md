@@ -23,3 +23,7 @@ leetcode 子目录：
 
 ## self
 
+
+## 资料
+
+LeetCodeAnimation：https://github.com/MisterBooo/LeetCodeAnimation
