@@ -1,6 +1,5 @@
 # ReadingNotes
 
-[![Join the chat at https://gitter.im/AlanCheen/ReadingNotes](https://badges.gitter.im/AlanCheen/ReadingNotes.svg)](https://gitter.im/AlanCheen/ReadingNotes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 > 万般皆下品惟有读书高
