@@ -1,5 +1,8 @@
 # 【源码分析】Retrofit
 
+> 迁移语雀 2021-2-22
+
+
 > 注：本文基于 Retrofit2.0版本，并配合 RxJava 来分析。<br />com.squareup.retrofit2:retrofit:2.0.0<br />com.squareup.retrofit2:converter-gson:2.0.0<br />com.squareup.retrofit2:adapter-rxjava:2.0.0
 
 

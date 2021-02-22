@@ -1,5 +1,9 @@
 # 【AAC 系列一】Android 应用架构新时代来临！
 
+
+> 迁移语雀 2021-2-22
+
+
 ### 0. 前言
 
 > 本文是深入理解「Android Architecture Components」系列文章的开篇。

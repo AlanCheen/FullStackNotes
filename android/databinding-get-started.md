@@ -1,5 +1,9 @@
 # 掌握 DataBinding 实践篇
 
+> 迁移语雀 2021-2-22
+
+
+
 [TOC]
 
 [掌握 DataBinding 理论篇](./databinding.md)

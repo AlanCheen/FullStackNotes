@@ -1,6 +1,8 @@
 # Shape Drawable
 
 
+> 迁移语雀 2021-2-22
+
 
 指 XML 里的 shape 类型。
 

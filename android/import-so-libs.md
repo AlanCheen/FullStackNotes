@@ -1,5 +1,6 @@
 # Android 中引入 so 文件
 
+> 迁移语雀 2021-2-22
 
 
 Android Studio 引入 so 文件方法有二。

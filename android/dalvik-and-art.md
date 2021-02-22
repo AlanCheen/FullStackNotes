@@ -1,5 +1,8 @@
 # ART and Dalvik
 
+> 迁移语雀 2021-2-22
+
+
 ### ART
 
 >  Android Runtime (ART) 是 Android 上的应用和部分系统服务使用的托管式运行时。
